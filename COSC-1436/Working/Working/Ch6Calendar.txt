@@ -1,0 +1,150 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+int printDays(int, int &, ofstream&);
+int printHeader(int,int, ofstream&);
+int janFirst(int);
+bool isLeap(int);
+
+int printDays(int daysInMonth, int & dow, ofstream &outfile){
+int j,tab;
+for (j=1; j <= daysInMonth; j++){
+
+    if(j==1)
+        tab = (4*(dow+1));
+    else
+        tab = 4;
+
+    outfile << setw(tab) << j;
+    dow ++;
+    if (dow > 6){
+
+        dow = 0;
+        outfile << endl;
+
+        }
+
+
+
+}
+
+    outfile << endl;
+
+}
+
+int printHeader(int month, int year, ofstream &outfile){
+    string monthName;
+    int daysInMonth;
+    int spaceValue = 15;
+
+
+    switch(month){
+
+    case 0:
+        monthName = "January";
+        daysInMonth = 31;
+        break;
+    case 1:
+        monthName = "February";
+        if (isLeap(year))
+            daysInMonth = 29;
+        else
+            daysInMonth = 28;
+        break;
+    case 2:
+        daysInMonth = 31;
+        monthName = "March";
+        break;
+    case 3:
+        daysInMonth = 30;
+        monthName = "April";
+        break;
+    case 4:
+        daysInMonth = 31;
+        monthName = "May";
+        break;
+    case 5:
+        daysInMonth = 30;
+        monthName = "June";
+        break;
+    case 6:
+        daysInMonth = 31;
+        monthName = "July";
+        break;
+    case 7:
+        daysInMonth = 31;
+        monthName = "August";
+        break;
+    case 8:
+        daysInMonth = 30;
+        monthName = "September";
+        break;
+    case 9:
+        daysInMonth = 31;
+        monthName = "October";
+        break;
+    case 10:
+        daysInMonth = 30;
+        monthName = "November";
+        break;
+    case 11:
+        daysInMonth = 31;
+        monthName = "December";
+        break;
+    default:
+        break;
+    }
+
+    outfile << "===============================" << endl;
+    outfile << "#" << setw(spaceValue) << monthName << "  " << year <<"        #" << endl;
+    outfile << "#                             #" << endl;
+    outfile << "#  S   M   T   W   T   F   S  #" << endl;
+    outfile << "===============================" << endl;
+
+    return daysInMonth;
+
+}
+
+int janFirst(int year) {
+    year = year - 1;
+    int firstOnDay;
+    firstOnDay = (1 + year + (year / 4) - (year / 100) + (year / 400)) % 7;
+
+    return firstOnDay;
+}
+
+bool isLeap(int year) {
+
+    return (year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0));
+
+}
+
+int main() {
+    int year, i, dayofWeek;
+    ofstream outfile;
+    outfile.open("calendar.txt");
+
+    cout << "Enter Year of the Calendar You Wish to View. It must be greater than 1600: " << endl;
+    cin >> year;
+
+    if (year < 1600) {
+        cout << "You Entered an Invalid Year. Please Enter a Year Greater than 1600." << endl;
+        cin >> year;
+    }
+
+    dayofWeek = janFirst(year);
+
+    for (i == 0; i <=11; i++){
+
+            printDays (printHeader(i, year, outfile), dayofWeek, outfile);
+
+    }
+
+
+
+
+    return 0;
+}

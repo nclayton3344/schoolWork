@@ -1,0 +1,47 @@
+Unsigned Binary Conversion
+Enter a number between 0-255:
+200
+The unsigned binary equivalent of 200 is: 1100 1000
+Would you like to convert another number? y/n
+
+Unsigned Binary Conversion
+Enter a number between 0-255:
+63
+The unsigned binary equivalent of 63 is: 0011 1111
+Would you like to convert another number? y/n
+
+Unsigned Binary Conversion
+Enter a number between 0-255:
+255
+The unsigned binary equivalent of 255 is: 1111 1111
+Would you like to convert another number? y/n
+
+Unsigned Binary Conversion
+Enter a number between 0-255:
+1
+The unsigned binary equivalent of 1 is: 0000 0001
+Would you like to convert another number? y/n
+
+Unsigned Binary Conversion
+Enter a number between 0-255:
+7
+The unsigned binary equivalent of 7 is: 0000 0111
+Would you like to convert another number? y/n
+
+Unsigned Binary Conversion
+Enter a number between 0-255:
+144
+The unsigned binary equivalent of 144 is: 1001 0000
+Would you like to convert another number? y/n
+
+Unsigned Binary Conversion
+Enter a number between 0-255:
+-1
+ERROR! Number is not within proper range.
+Would you like to convert another number? y/n
+
+Unsigned Binary Conversion
+Enter a number between 0-255:
+320
+ERROR! Number is not within proper range.
+Would you like to convert another number? y/n

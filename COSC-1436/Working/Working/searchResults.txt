@@ -1,0 +1,228 @@
+******* UNSORTED LIST ONE**************
+
+  1.         twas
+  2.        night
+  3.       before
+  4.    christmas
+  5.      through
+  6.        house
+  7.     creature
+  8.     stirring
+  9.        mouse
+ 10.    stockings
+ 11.      chimney
+ 12.        hopes
+ 13.     children
+ 14.      nestled
+ 15.         snug
+ 16.         beds
+ 17.      visions
+ 18.  sugar-plums
+ 19.       danced
+ 20.        heads
+ 21.     kerchief
+ 22.      settled
+ 23.       brains
+ 24.       winter
+ 25.          nap
+ 26.         lawn
+ 27.      clatter
+ 28.       sprang
+ 29.       matter
+ 30.       window
+ 31.        flash
+ 32.         tore
+ 33.     shutters
+ 34.         moon
+ 35.   new-fallen
+ 36.         snow
+ 37.       lustre
+ 38.      objects
+ 39.    wondering
+ 40.         eyes
+ 41.       appear
+ 42.    miniature
+ 43.       sleigh
+ 44.        eight
+ 45.     reindeer
+ 46.       lively
+ 47.        quick
+
+
+******* UNSORTED LIST TWO**************
+
+  1.          who
+  2.        wants
+  3.        cheap
+  4.   rhinoceros
+  5.         sale
+  6.       floppy
+  7.         ears
+  8.       cloppy
+  9.         feet
+ 10.         eyes
+ 11.       giving
+ 12.         tree
+ 13.      giraffe
+ 14.         half
+ 15.         sale
+ 16.     friendly
+ 17.        waggy
+ 18.     huggable
+ 19.         jump
+ 20.         rope
+ 21.         turn
+ 22.        quiet
+ 23.        house
+ 24.     backward
+ 25.         bill
+ 26.        lives
+ 27.         hill
+ 28.        shack
+ 29.        front
+ 30.        porch
+ 31.        zebra
+ 32.      stripes
+ 33.       window
+ 34.         door
+ 35.       cellar
+ 36.        floor
+ 37.      missing
+ 38.        piece
+ 39.    somewhere
+ 40.       pickle
+ 41.    stretched
+ 42.     children
+ 43.          nap
+ 44.         good
+ 45.        night
+
+
+********** SORTED LIST ONE ***********
+
+  1.       appear
+  2.         beds
+  3.       before
+  4.       brains
+  5.     children
+  6.      chimney
+  7.    christmas
+  8.      clatter
+  9.     creature
+ 10.       danced
+ 11.        eight
+ 12.         eyes
+ 13.        flash
+ 14.        heads
+ 15.        hopes
+ 16.        house
+ 17.     kerchief
+ 18.         lawn
+ 19.       lively
+ 20.       lustre
+ 21.       matter
+ 22.    miniature
+ 23.         moon
+ 24.        mouse
+ 25.          nap
+ 26.      nestled
+ 27.   new-fallen
+ 28.        night
+ 29.      objects
+ 30.        quick
+ 31.     reindeer
+ 32.      settled
+ 33.     shutters
+ 34.       sleigh
+ 35.         snow
+ 36.         snug
+ 37.       sprang
+ 38.     stirring
+ 39.    stockings
+ 40.  sugar-plums
+ 41.      through
+ 42.         tore
+ 43.         twas
+ 44.      visions
+ 45.       window
+ 46.       winter
+ 47.    wondering
+
+
+********** SORTED LIST TWO ***********
+
+  1.     backward
+  2.         bill
+  3.       cellar
+  4.        cheap
+  5.     children
+  6.       cloppy
+  7.         door
+  8.         ears
+  9.         eyes
+ 10.         feet
+ 11.        floor
+ 12.       floppy
+ 13.     friendly
+ 14.        front
+ 15.      giraffe
+ 16.       giving
+ 17.         good
+ 18.         half
+ 19.         hill
+ 20.        house
+ 21.     huggable
+ 22.         jump
+ 23.        lives
+ 24.      missing
+ 25.          nap
+ 26.        night
+ 27.       pickle
+ 28.        piece
+ 29.        porch
+ 30.        quiet
+ 31.   rhinoceros
+ 32.         rope
+ 33.         sale
+ 34.         sale
+ 35.        shack
+ 36.    somewhere
+ 37.    stretched
+ 38.      stripes
+ 39.         tree
+ 40.         turn
+ 41.        waggy
+ 42.        wants
+ 43.          who
+ 44.       window
+ 45.        zebra
+
+
+*************** SEARCH RESULTS **************
+
+The word eyes was found in array 1 at position 11 and was found in array 2 at position 8.
+
+The word mouse was found in array 1 at position 23 and was not found in array 2.
+
+The word house was found in array 1 at position 15 and was found in array 2 at position 19.
+
+The word creature was found in array 1 at position 8 and was not found in array 2.
+
+The word children was found in array 1 at position 4 and was found in array 2 at position 4.
+
+The word nap was found in array 1 at position 24 and was found in array 2 at position 24.
+
+The word triangle was not found in array 1 and was not found in array 2.
+
+The word rhinoceros was not found in array 1 and was found in array 2 at position 30.
+
+The word clatter was found in array 1 at position 7 and was not found in array 2.
+
+The word somewhere was not found in array 1 and was found in array 2 at position 35.
+
+The word engineering was not found in array 1 and was not found in array 2.
+
+The word holidays was not found in array 1 and was not found in array 2.
+
+The word window was found in array 1 at position 44 and was found in array 2 at position 43.
+

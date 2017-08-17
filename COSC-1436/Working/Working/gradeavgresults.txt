@@ -1,0 +1,59 @@
+Enter grades to average. Enter Q to quit.
+Enter grade 1:
+88
+Enter a grade 2:
+78
+Enter a grade 3:
+45
+Enter a grade 4:
+82
+Enter a grade 5:
+81
+Enter a grade 6:
+75
+Enter a grade 7:
+75
+Enter a grade 8:
+75
+Enter a grade 9:
+75
+Enter a grade 10:
+45
+Enter a grade 11:
+q
+For 10 grades, the average is: 74.9
+Letter Grade: C
+Press any key to continue . . .
+
+
+
+Enter grades to average. Enter Q to quit.
+Enter grade 1:
+99
+Enter a grade 2:
+q
+For 1 grades, the average is: 99.0
+Letter Grade: A
+Press any key to continue . . .
+
+
+
+Enter grades to average. Enter Q to quit.
+Enter grade 1:
+63
+Enter a grade 2:
+78
+Enter a grade 3:
+98
+Enter a grade 4:
+65
+Enter a grade 5:
+91
+Enter a grade 6:
+q
+For 5 grades, the average is: 83.0
+Letter Grade: B
+Press any key to continue . . .
+
+
+

@@ -1,0 +1,53 @@
+Grade Average Calculator
+----------------------------
+Enter a Grade or Enter -1 to Quit.
+88
+Enter a Grade or Enter -1 to Quit.
+78
+Enter a Grade or Enter -1 to Quit.
+45
+Enter a Grade or Enter -1 to Quit.
+82
+Enter a Grade or Enter -1 to Quit.
+81
+Enter a Grade or Enter -1 to Quit.
+75
+Enter a Grade or Enter -1 to Quit.
+75
+Enter a Grade or Enter -1 to Quit.
+75
+Enter a Grade or Enter -1 to Quit.
+75
+Enter a Grade or Enter -1 to Quit.
+45
+Enter a Grade or Enter -1 to Quit.
+-1
+The average for 10 grades is: 74.9 which is a letter grade of "C"
+
+
+
+Grade Average Calculator
+----------------------------
+Enter a Grade or Enter -1 to Quit.
+99
+Enter a Grade or Enter -1 to Quit.
+-1
+The average for 1 grades is: 99.0 which is a letter grade of "A"
+
+
+
+Grade Average Calculator
+----------------------------
+Enter a Grade or Enter -1 to Quit.
+63
+Enter a Grade or Enter -1 to Quit.
+78
+Enter a Grade or Enter -1 to Quit.
+98
+Enter a Grade or Enter -1 to Quit.
+65
+Enter a Grade or Enter -1 to Quit.
+91
+Enter a Grade or Enter -1 to Quit.
+-1
+The average for 5 grades is: 83.0 which is a letter grade of "B"

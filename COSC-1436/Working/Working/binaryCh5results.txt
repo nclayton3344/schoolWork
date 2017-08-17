@@ -1,0 +1,70 @@
+Unsigned Binary Conversion
+Enter a number between 0-65,535 with commas:
+200
+200 converted to binary is: 0000 0000 1100 1000
+
+Would you like to convert another number? y/n
+y
+Unsigned Binary Conversion
+Enter a number between 0-65,535 with commas:
+63
+63 converted to binary is: 0000 0000 0011 1111
+
+Would you like to convert another number? y/n
+y
+Unsigned Binary Conversion
+Enter a number between 0-65,535 with commas:
+255
+255 converted to binary is: 0000 0000 1111 1111
+
+Would you like to convert another number? y/n
+y
+Unsigned Binary Conversion
+Enter a number between 0-65,535 with commas:
+144
+144 converted to binary is: 0000 0000 1001 0000
+
+Would you like to convert another number? y/n
+y
+Unsigned Binary Conversion
+Enter a number between 0-65,535 with commas:
+-1
+-1 converted to binary is: ERROR! The number you enter was not in the proper ran
+ge.
+
+
+Would you like to convert another number? y/n
+y
+Unsigned Binary Conversion
+Enter a number between 0-65,535 with commas:
+1024
+1024 converted to binary is: 0000 0100 0000 0000
+
+Would you like to convert another number? y/n
+y
+Unsigned Binary Conversion
+Enter a number between 0-65,535 with commas:
+65000
+65000 converted to binary is: 1111 1101 1110 1000
+
+Would you like to convert another number? y/n
+y
+Unsigned Binary Conversion
+Enter a number between 0-65,535 with commas:
+100000
+100000 converted to binary is: ERROR! The number you enter was not in the proper
+ range.
+
+
+Would you like to convert another number? y/n
+y
+Unsigned Binary Conversion
+Enter a number between 0-65,535 with commas:
+65535
+65535 converted to binary is: 1111 1111 1111 1111
+
+Would you like to convert another number? y/n
+n
+Program Terminated
+Press any key to continue . . .
+

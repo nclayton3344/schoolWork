@@ -1,0 +1,46 @@
+Are you calculating the speed of sound in air, water, or steel? Select by typing
+ A, W, or S
+a
+Enter a distance in feet.
+5.7
+Through air, sound waves travel 5.7 feet in 0.0052 seconds.
+
+
+Are you calculating the speed of sound in air, water, or steel? Select by typing
+ A, W, or S
+w
+Enter a distance in feet.
+5.7
+Through water, sound waves travel 5.7 feet in 0.0012 seconds.
+
+
+Are you calculating the speed of sound in air, water, or steel? Select by typing
+ A, W, or S
+s
+Enter a distance in feet.
+5.7
+Through steel, sound waves travel 5.7 feet in 0.0003 seconds.
+
+
+Are you calculating the speed of sound in air, water, or steel? Select by typing
+ A, W, or S
+a
+Enter a distance in feet.
+32000
+Through air, sound waves travel 32000.0 feet in 29.0909 seconds.
+
+
+Are you calculating the speed of sound in air, water, or steel? Select by typing
+ A, W, or S
+w
+Enter a distance in feet.
+32000
+Through water, sound waves travel 32000.0 feet in 6.5306 seconds.
+
+
+Are you calculating the speed of sound in air, water, or steel? Select by typing
+ A, W, or S
+s
+Enter a distance in feet.
+32000
+Through steel, sound waves travel 32000.0 feet in 1.9512 seconds.

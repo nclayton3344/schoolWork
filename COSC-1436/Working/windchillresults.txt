@@ -1,0 +1,45 @@
+Wind Chill Calculator
+-----------------------------
+What is the velocity of the wind in MPH?
+16
+
+What is the temperature in Fahrenheit?
+20
+
+The wind chill is: 5.78 degrees Fahrenheit
+
+
+
+Wind Chill Calculator
+-----------------------------
+What is the velocity of the wind in MPH?
+35
+
+What is the temperature in Fahrenheit?
+20
+
+The wind chill is: 0.13 degrees Fahrenheit
+
+
+
+Wind Chill Calculator
+-----------------------------
+What is the velocity of the wind in MPH?
+5
+
+What is the temperature in Fahrenheit?
+32
+
+The wind chill is: 27.08 degrees Fahrenheit
+
+
+
+Wind Chill Calculator
+-----------------------------
+What is the velocity of the wind in MPH?
+15
+
+What is the temperature in Fahrenheit?
+0
+
+The wind chill is: -19.40 degrees Fahrenheit

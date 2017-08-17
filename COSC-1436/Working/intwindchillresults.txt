@@ -1,0 +1,45 @@
+International Wind Chill Calculator
+-----------------------------
+What is the velocity of the wind in KPH?
+20
+
+What is the temperature in Celsius?
+-5
+
+The wind chill is: 11.25 degrees Fahrenheit or -11.53 degrees Celsius.
+
+
+
+International Wind Chill Calculator
+-----------------------------
+What is the velocity of the wind in KPH?
+50
+
+What is the temperature in Celsius?
+-5
+
+The wind chill is: 5.13 degrees Fahrenheit or -14.93 degrees Celsius.
+
+
+
+International Wind Chill Calculator
+-----------------------------
+What is the velocity of the wind in KPH?
+7
+
+What is the temperature in Celsius?
+0
+
+The wind chill is: 27.71 degrees Fahrenheit or -2.38 degrees Celsius.
+
+
+
+International Wind Chill Calculator
+-----------------------------
+What is the velocity of the wind in KPH?
+25
+
+What is the temperature in Celsius?
+10
+
+The wind chill is: 44.52 degrees Fahrenheit or 6.96 degrees Celsius.

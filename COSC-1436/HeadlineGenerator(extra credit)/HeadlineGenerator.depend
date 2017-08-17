@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1493499443 source:/home/sid/Documents/C++ Projects Code Blocks/HeadlineGenerator/main.cpp
+	<iostream>
+	<fstream>
+	<iomanip>
+	<ctime>
+	<cstdlib>
+	<string>
+

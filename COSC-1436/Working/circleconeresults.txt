@@ -1,0 +1,89 @@
+Enter the radius of the circle in cenimeters.
+3.0
+What is the height of the cone in cenimeters?
+1.0
+Circle
+-------------------------
+Area:               28.27 sq. cm
+Circumference:      18.85 cm
+
+Sphere
+-------------------------
+Volume:           113.10 cubic cm
+Surface Area:     113.10 cubic cm
+
+Cone
+-------------------------
+Volume:             9.42 cubic cm
+Slant Height:       3.16 cm
+Surface Area:      58.08 cubic cm
+Press any key to continue . . .
+
+
+
+Enter the radius of the circle in cenimeters.
+6.7
+What is the height of the cone in cenimeters?
+1.5
+Circle
+-------------------------
+Area:              141.03 sq. cm
+Circumference:      42.10 cm
+
+Sphere
+-------------------------
+Volume:          1259.84 cubic cm
+Surface Area:     564.11 cubic cm
+
+Cone
+-------------------------
+Volume:            70.51 cubic cm
+Slant Height:       6.87 cm
+Surface Area:     285.54 cubic cm
+Press any key to continue . . .
+
+
+
+Enter the radius of the circle in cenimeters.
+10.0
+What is the height of the cone in cenimeters?
+15.0
+Circle
+-------------------------
+Area:              314.16 sq. cm
+Circumference:      62.83 cm
+
+Sphere
+-------------------------
+Volume:          4188.80 cubic cm
+Surface Area:    1256.64 cubic cm
+
+Cone
+-------------------------
+Volume:          1570.80 cubic cm
+Slant Height:      18.03 cm
+Surface Area:     880.52 cubic cm
+Press any key to continue . . .
+
+
+
+Enter the radius of the circle in cenimeters.
+1.0
+What is the height of the cone in cenimeters?
+1.5
+Circle
+-------------------------
+Area:                3.14 sq. cm
+Circumference:       6.28 cm
+
+Sphere
+-------------------------
+Volume:             4.19 cubic cm
+Surface Area:      12.57 cubic cm
+
+Cone
+-------------------------
+Volume:             1.57 cubic cm
+Slant Height:       1.80 cm
+Surface Area:       8.81 cubic cm
+Press any key to continue . . .
