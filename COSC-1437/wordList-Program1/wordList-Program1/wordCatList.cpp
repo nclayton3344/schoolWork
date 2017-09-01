@@ -9,11 +9,15 @@
 using namespace std;
 
 void sortArray(string[], int);
-void checkPattern(string&, int);
+bool checkCat1(string&, int);
+bool checkCat2(string&, int);
+void printExplan();
+
 
 int main() {
 
 	string word;
+	bool isCat1, isCat2;
 	int wordCount = 0;
 	int cat1Count = 0, cat2Count = 0;
 	const int MAX = 10000;
@@ -32,21 +36,52 @@ int main() {
 		int length = word.length();
 
 		if (length > 4){
-			checkPattern(word, length);
+			isCat1 = checkCat1(word, length);
+			isCat2 = checkCat2(word, length);
+
+			if (isCat1) {
+				category1[cat1Count] = word;
+				cat1Count++;
+			}
+			else if (isCat2) {
+				category2[cat2Count] = word;
+				cat2Count++;
+			}
 		}
 
 		wordCount++;
 
 	}
 
+	sortArray(category1, cat1Count);
+	sortArray(category2, cat2Count);
+
+	cout << "Date/Time: " << __TIMESTAMP__ << endl << endl;
+	printExplan();
+
+	cout << endl << " ----- Category 1 -----" << endl << endl;
+
+	for (int i = 0; i < cat1Count; i++) {
+		cout << setw(3) << i+1 << ": " <<  category1[i] << endl;
+	}
+
+	cout << fixed << showpoint << setprecision(4);
+	cout << endl << "I found " << cat1Count << " words out of " << wordCount << " words that fit in Category 1. That's a total of " << float(cat1Count) / wordCount << "%!" << endl;
+
+	cout << endl << "----- Category 2 -----" << endl << endl;
+
+	for (int i = 0; i < cat2Count; i++) {
+		cout << setw(3) << i+ 1 << ": " << category2[i] << endl;
+	}
+
+	cout << endl << "I found " << cat2Count << " words out of " << wordCount << " words that fit in Category 2. That's a total of " << float(cat2Count) / wordCount << "%!" << endl;
+
 	cin >> word;
 	
 
 }
 
-void checkPattern(string & word, int length) {
-
-	bool isCat1 = true, isCat2 = true;
+bool checkCat1(string & word, int length) {
 
 	//Sets 'word' to lower case
 	for (int i = 0; i < length; i++) {
@@ -55,18 +90,34 @@ void checkPattern(string & word, int length) {
 
 	for (int j = 0; j < length - 1; j++) {
 		if (word[j] > word[j + 1]) {
-			isCat1 = false;
-			break;
+			return false;
 		}
 	}
+	return true;
+}
 
-	for (int j = length-1; j > 0; j--) {
+bool checkCat2(string & word, int length) {
+
+	//Sets 'word' to lower case
+	for (int i = 0; i < length; i++) {
+		word[i] = tolower(word[i]);
+	}
+
+	for (int j = length - 1; j > 0; j--) {
 		if (word[j] > word[j - 1]) {
-			isCat2 = false;
-			break;
+			return false;
 		}
 	}
+	return true;
+}
 
+void printExplan() {
+
+	cout << "----CATEGORIES EXPLANATION-----------------------------------------------------------------------------------------" << endl << endl;
+	cout << "Category 1: a group of words whose indiviudal characters are in alphabetically increasing order from left to right." << endl;
+	cout << "Category 2: a group of words whose indiviudal characters are in alphabetically increasing order from right to left." << endl;
+	cout << "                          *Note: Both categories allow for consecutive repeating letters." << endl;
+	cout << endl << "-------------------------------------------------------------------------------------------------------------------" << endl;
 }
 
 //Function to sort a string array alphabetically
