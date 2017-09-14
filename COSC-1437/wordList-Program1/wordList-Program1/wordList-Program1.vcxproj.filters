@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="wordCatList.cpp">
+    <ClCompile Include="arrayOfStructs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
