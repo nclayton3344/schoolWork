@@ -1,0 +1,7 @@
+You chose 5 entries.
+The values you entered are: 
+25
+41
+32
+66
+85

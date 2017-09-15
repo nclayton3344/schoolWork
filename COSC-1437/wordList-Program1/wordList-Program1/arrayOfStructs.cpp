@@ -1,3 +1,6 @@
+//Nathaniel Clayton 9-7-17
+//Array of Structs Assignment
+//Program to print reports for class grade information
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -13,6 +16,7 @@ struct Student{
 	
 };
 
+//Function Prototypes
 int loadArray(Student[], ifstream&, int);
 void sortbyID(Student[], int);
 void sortbyLast(Student[], int);
@@ -38,7 +42,7 @@ int main() {
 
 	if (!infile) {
 		cout << "Fission Mailed! Something went horribly wrong." << endl;
-		return 0;
+		return 1;
 	}
 	
 	studentCount = loadArray(stuInfo, infile, MAX);
@@ -49,9 +53,11 @@ int main() {
 	sortbyLast(stuInfo, studentCount);
 	printTeacherReport(stuInfo, outfile2, studentCount);
 
-
 }
 
+//Function to load array of structs with data
+//Pre-Condtion: Student Struct array defined, ifstream defined, MAX size of array defined
+//Post-Conditon: Student struct array given values and the number of entries is returned
 int loadArray(Student stuInfo[], ifstream& in, int MAX) {
 
 	int i = 0;
@@ -75,6 +81,9 @@ int loadArray(Student stuInfo[], ifstream& in, int MAX) {
 
 }
 
+//Function to sort struct array by studentID 
+//Pre-Conditon: Student struct array defined and number of elements is known
+//Post-Conditon: Struct array is sorted by studentID 
 void sortbyID(Student unsorted[], int numElements) {
 	int i, j, minIndex;
 
@@ -101,6 +110,9 @@ void sortbyID(Student unsorted[], int numElements) {
 
 }
 
+//Function to sort struct array by student last name 
+//Pre-Conditon: Student struct array defined and number of elements is known
+//Post-Conditon: Struct array is sorted by student last name
 void sortbyLast(Student unsorted[], int numElements) {
 	int i, j, minIndex;
 
@@ -127,6 +139,9 @@ void sortbyLast(Student unsorted[], int numElements) {
 
 }
 
+//Function to Output Grades along with Student ID - then class average
+//Pre-Conditon: Student struct array defined, ofstream defined, number of elements is known
+//Post-Conditon: Output is generated to a txt file
 void printPostedGrades(Student student[], ofstream& out, int count) {
 
 	out << fixed << showpoint << setprecision(2);
@@ -141,6 +156,9 @@ void printPostedGrades(Student student[], ofstream& out, int count) {
 
 }
 
+//Function to Output Teacher Report with all student info and class statistics
+//Pre-Conditon: Student struct array defined, ofstream defined, number of elements is known
+//Post-Conditon: Output is generated to a txt file
 void printTeacherReport(Student student[], ofstream& out, int count) {
 
 	out << fixed << showpoint << setprecision(2);
@@ -191,6 +209,8 @@ void printTeacherReport(Student student[], ofstream& out, int count) {
 
 }
 
+//Function that calculates the class' final average
+//Pre-Condtion: Student struct is defined 
 double calculateFinalAverage(Student student[], int count) {
 
 	double gradeTotals = 0;
