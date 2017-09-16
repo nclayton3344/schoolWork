@@ -7,11 +7,13 @@
 #include <fstream>
 using namespace std;
 
+//Data Type Student
+//This holds multiple types of data related to a single student
 struct Student{
 
 	int studentID;
 	string lname, fname;
-	int exam1, exam2, exam3;
+	int exams[3];
 	double examAvg;
 	
 };
@@ -23,9 +25,7 @@ void sortbyLast(Student[], int);
 void printPostedGrades(Student[], ofstream&, int);
 void printTeacherReport(Student[], ofstream&, int);
 double calculateFinalAverage(Student[], int);
-double calculateClassAvgExam1(Student[], int);
-double calculateClassAvgExam2(Student[], int);
-double calculateClassAvgExam3(Student[], int);
+double calculateClassAvgExam(Student[], int, int);
 int calculateHighestAvg(Student[], int);
 int calculateLowestAvg(Student[], int);
 
@@ -47,9 +47,13 @@ int main() {
 	
 	studentCount = loadArray(stuInfo, infile, MAX);
 
+	//Sort stuInfo array by studentID
+	//and Print info for posting grades
 	sortbyID(stuInfo, studentCount);
 	printPostedGrades(stuInfo, outfile, studentCount);
 
+	//Sort stuInfo array by lname
+	//and print info for teacher report
 	sortbyLast(stuInfo, studentCount);
 	printTeacherReport(stuInfo, outfile2, studentCount);
 
@@ -67,11 +71,11 @@ int loadArray(Student stuInfo[], ifstream& in, int MAX) {
 		in >> stuInfo[i].studentID;
 		in >> stuInfo[i].lname;
 		in >> stuInfo[i].fname;
-		in >> stuInfo[i].exam1;
-		in >> stuInfo[i].exam2;		
-		in >> stuInfo[i].exam3;
+		in >> stuInfo[i].exams[0];
+		in >> stuInfo[i].exams[1];		
+		in >> stuInfo[i].exams[2];
 
-		stuInfo[i].examAvg = (stuInfo[i].exam1 + stuInfo[i].exam2 + stuInfo[i].exam3) / 3.0;
+		stuInfo[i].examAvg = (stuInfo[i].exams[0] + stuInfo[i].exams[1] + stuInfo[i].exams[2]) / 3.0;
 
 		i++;
 	}
@@ -187,17 +191,17 @@ void printTeacherReport(Student student[], ofstream& out, int count) {
 
 	for (int j = 0; j < count; j++) {
 
-		out << left << setw(20) << student[j].fname + " " + student[j].lname << setw(20) << student[j].studentID << setw(20) << student[j].exam1 << setw(20) << student[j].exam2
-			<< setw(20) << student[j].exam3 << setw(20) << student[j].examAvg << endl << endl;
+		out << left << setw(20) << student[j].fname + " " + student[j].lname << setw(20) << student[j].studentID << setw(20) << student[j].exams[0] << setw(20) << student[j].exams[1]
+			<< setw(20) << student[j].exams[2] << setw(20) << student[j].examAvg << endl << endl;
 
 	}
 	
 	out << endl << endl << endl;
 	out << "****** CLASS STATISTICS: ******" << endl << endl;
 	out << "Total Number of Students in Class: " << count << endl << endl;
-	out << "The Class Average for Exam 1 is: " << calculateClassAvgExam1(student, count) << endl << endl;
-	out << "The Class Average for Exam 2 is: " << calculateClassAvgExam2(student, count) << endl << endl;	
-	out << "The Class Average for Exam 3 is: " << calculateClassAvgExam3(student, count) << endl << endl;
+	out << "The Class Average for Exam 1 is: " << calculateClassAvgExam(student, count, 0) << endl << endl;
+	out << "The Class Average for Exam 2 is: " << calculateClassAvgExam(student, count, 1) << endl << endl;	
+	out << "The Class Average for Exam 3 is: " << calculateClassAvgExam(student, count, 2) << endl << endl;
 	out << acount << " students finished the class with an A. That's " << (double(acount) / count) * 100 << "% of the class." << endl << endl;
 	out << bcount << " students finished the class with a B. That's " << (double(bcount) / count) * 100 << "% of the class." << endl << endl;
 	out << ccount << " students finished the class with a C. That's " << (double(ccount) / count) * 100 << "% of the class." << endl << endl;
@@ -210,7 +214,8 @@ void printTeacherReport(Student student[], ofstream& out, int count) {
 }
 
 //Function that calculates the class' final average
-//Pre-Condtion: Student struct is defined 
+//Pre-Condtion: Student struct array defined with count elements
+//Post-Condition: final average for entire class is returned
 double calculateFinalAverage(Student student[], int count) {
 
 	double gradeTotals = 0;
@@ -225,13 +230,16 @@ double calculateFinalAverage(Student student[], int count) {
 
 }
 
-double calculateClassAvgExam1(Student student[], int count) {
+//Function to calculate the class' average for exam at struct data -> exams[index]
+//Pre-Conditon: Struct array defined with count elements and given index value for exam
+//Post-Conditon: class average for exam at index is returned
+double calculateClassAvgExam(Student student[], int count, int index) {
 
 	int total = 0;
 
 	for (int i = 0; i < count; i++) {
 
-		total += student[i].exam1;
+		total += student[i].exams[index];
 
 	}
 
@@ -239,34 +247,9 @@ double calculateClassAvgExam1(Student student[], int count) {
 
 }
 
-double calculateClassAvgExam2(Student student[], int count) {
-
-	int total = 0;
-
-	for (int i = 0; i < count; i++) {
-
-		total += student[i].exam2;
-
-	}
-
-	return (total / double(count));
-
-}
-
-double calculateClassAvgExam3(Student student[], int count) {
-
-	int total = 0;
-
-	for (int i = 0; i < count; i++) {
-
-		total += student[i].exam3;
-
-	}
-
-	return (total / double(count));
-
-}
-
+//Function to Calculate Highest Final Average
+//Pre-Conditon: Student struct is defined with count elements
+//Post-Conditon: index of student in s array (with highest average) is returned
 int calculateHighestAvg(Student s[], int count) {
 
 	double high = 0.0;
@@ -286,6 +269,9 @@ int calculateHighestAvg(Student s[], int count) {
 
 }
 
+//Function to Calculate Lowest Final Average
+//Pre-Conditon: Student struct is defined with count elements
+//Post-Conditon: index of student in s array (with lowest average) is returned
 int calculateLowestAvg(Student s[], int count) {
 
 	double low = 0.0;
