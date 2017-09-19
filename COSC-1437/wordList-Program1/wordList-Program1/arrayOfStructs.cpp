@@ -33,18 +33,26 @@ int main() {
 
 	int studentCount;
 	const int MAX = 50;
+	string filename;
 	ifstream infile;
 	ofstream outfile, outfile2;
 	Student stuInfo[MAX];
-	infile.open("STURECS2.txt");
 	outfile.open("Report3.txt");
 	outfile2.open("Report4.txt");
 
-	if (!infile) {
-		cout << "Fission Mailed! Something went horribly wrong." << endl;
-		return 1;
-	}
-	
+	do {
+
+		cout << "Enter the name of the input file: (Example: \"filename.txt\")" << endl;
+		cin >> filename;
+		infile.open(filename);
+
+		if (!infile) {
+			cout << "Fission Mailed! Something went horribly wrong." << endl;
+			return 1;
+		}
+
+	} while (!infile);
+
 	studentCount = loadArray(stuInfo, infile, MAX);
 
 	//Sort stuInfo array by studentID
