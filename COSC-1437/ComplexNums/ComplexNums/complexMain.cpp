@@ -18,26 +18,34 @@ int main()
 	printInfo();
 
 	do {
+
+		//This retrieves real and imaginary number from user input
+		//---and assigns it to c1 using assign member function
 		cout << "Please enter the value of the real number in Set 1:" << endl;
 		cin >> r1;
 		cout << "Please enter the value of the imaginary number in Set 1:" << endl;
 		cin >> i1;
 		c1.assign(r1, i1);
 
+		//This retrieves real and imaginary number from user input
+		//---and assigns it to c2 using assign member function
 		cout << endl << endl << "Please enter the value of the real number in Set 2:" << endl;
 		cin >> r2;
 		cout << "Please enter the value of the imaginary number in Set 2:" << endl;
 		cin >> i2;
 		c2.assign(r2, i2);
 		
+		//This displays the user input in Complex Number standard form
 		cout << endl << endl << "************************************************************"
 			<< endl << endl << "For Complex Number Set 1, You Entered: ";
 		c1.print();
 		cout << endl << "For Complex Number Set 2, You Entered: ";
 		c2.print();
 
+		//Complex Number Calculation Output
 		cout << endl << endl << "Here are your calculations: ";
-			
+		
+		//This displays the product of c1 and c2
 		answer = c1.multiplyby(c2);
 		cout << endl << endl;
 		c1.print();
@@ -46,6 +54,7 @@ int main()
 		cout << " = ";
 		answer.print();
 
+		//This displays the sum of c1 and c2
 		answer = c1.addto(c2);
 		cout << endl << endl;
 		c1.print();
@@ -56,24 +65,31 @@ int main()
 
 		cout << endl << endl << "************************************************************" << endl;
 
+		//User input to continue or terminate program
 		cout << endl << endl << "Enter 'y' (case sensitive) to add/multiply more complex numbers. To exit, enter any other key." << endl;
 		cin >> reply;
 		reply = tolower(reply);
 
 		cout << endl << endl;
 
-	} while (reply == 'y');
+	} while (reply == 'y'); // Repeats until user says otherwise
 
-	cout << endl << "\"Program Terminated\" - Arnold Schwarzenegger" << endl;
+	cout << endl << "\"Program Terminated\" - Arnold Schwarzenegger" << endl; //Arnold Is The Man
 }
 
+//Function that outputs Complex Calculator information with current date/time
+//Pre-Conditon: ctime included, iostream included, 
+//Post-Conditon: text based information is printed to console
 void printInfo() {
 
+	//Retreives current date/time and 
+	//assigns it to a char array
 	char dateStr[9];
 	char timeStr[9];
 	_strdate_s(dateStr);
 	_strtime_s(timeStr);
 
+	//Outputs Text based info to Console
 	cout << "***************************************************************************************" << endl <<endl;
 	cout << "Welcome to the Complex Number Calculator. This is a handy tool that allows you to add" << endl
 		<< "and multiply different sets of complex numbers until your heart's content. A complex " << endl

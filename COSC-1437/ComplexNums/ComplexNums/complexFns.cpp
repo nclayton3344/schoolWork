@@ -19,17 +19,19 @@ void Complex::assign(double r, double i) {
 //Post-Conditon: The Complex number is output in standard form
 void Complex::print() {
 
-	char op;
+	char op; //Character used to display +/-
 
+	//Determines which operation character to display based on imag value
 	if (imag > 0)
 		op = '+';
 	else
 		op = '-';
 
+	//Controls the Logic for displaying Complex Numbers
+	//---in standard form based on real/imag values
 	if (real == 0 && imag == 0)
 		cout << "0";
 	else if (real == 0 && imag != 0){
-
 		if (abs(imag) != 1)
 			cout << imag << "i";
 		else
@@ -75,6 +77,9 @@ Complex Complex::multiplyby(Complex a) {
 	return ans;
 
 }
+//Constructor function that assigns real and imag the value of 0
+//Pre-Conditon: Complex class is defined and Complex variable is defined
+//Post-Conditon: Declared complex variable is assigned real and imag values of 0
 Complex::Complex() : real(0), imag(0) {
 
 }

@@ -2,7 +2,8 @@
 class Complex {
 
 public:
-	Complex();
+	//Function Prototypes
+	Complex(); //constructor default
 	void assign(double, double);
 	void print();
 	Complex addto(Complex);
