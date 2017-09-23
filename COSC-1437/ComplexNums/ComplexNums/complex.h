@@ -10,6 +10,5 @@ public:
 
 private:
 	double real;
-	double imag;
-	
+	double imag;	
 };
