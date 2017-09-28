@@ -1,3 +1,6 @@
+//Nathaniel Clayton - COSC 1437
+//Using Classes Program - Complex Numbers
+// ------  9/19/207
 #include "complex.h"
 #include <iostream>
 #include <cmath>

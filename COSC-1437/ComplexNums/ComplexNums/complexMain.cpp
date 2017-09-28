@@ -6,12 +6,12 @@
 #include <ctime>
 using namespace std;
 
-void printInfo();
+void printInfo(); //function prototype
 
 int main()
 {
 
-	int r1, i1, r2, i2;
+	double r1, i1, r2, i2;
 	char reply = 'y';
 	Complex c1, c2, answer;
 
@@ -21,19 +21,39 @@ int main()
 
 		//This retrieves real and imaginary number from user input
 		//---and assigns it to c1 using assign member function
-		cout << "Please enter the value of the real number in Set 1:" << endl;
-		cin >> r1;
+		cout << "Please enter the value of the real number in Set 1:" << endl;		
+		while (!(cin >> r1)) { //Verifies that user inputs a double number
+			cout << "You Must Enter a Number. Try Again." << endl;
+			cin.clear();
+			cin.ignore();
+		}
+
 		cout << "Please enter the value of the imaginary number in Set 1:" << endl;
-		cin >> i1;
-		c1.assign(r1, i1);
+		while (!(cin >> i1)) { //Verifies that user inputs a double number
+			cout << "You Must Enter a Number. Try Again." << endl;
+			cin.clear();
+			cin.ignore();
+		}
+
+		c1.assign(r1, i1); //assigns c1 values of r1 and i1 using member function
 
 		//This retrieves real and imaginary number from user input
 		//---and assigns it to c2 using assign member function
 		cout << endl << endl << "Please enter the value of the real number in Set 2:" << endl;
-		cin >> r2;
+		while (!(cin >> r2)) { //Verifies that user inputs a double number
+			cout << "You Must Enter a Number. Try Again." << endl;
+			cin.clear();
+			cin.ignore();
+		}
+
 		cout << "Please enter the value of the imaginary number in Set 2:" << endl;
-		cin >> i2;
-		c2.assign(r2, i2);
+		while (!(cin >> i2)) { //Verifies that user inputs a double number
+			cout << "You Must Enter a Number. Try Again." << endl;
+			cin.clear();
+			cin.ignore();
+		}
+
+		c2.assign(r2, i2); //assigns c2 values of r2 and i2 using member function
 		
 		//This displays the user input in Complex Number standard form
 		cout << endl << endl << "************************************************************"

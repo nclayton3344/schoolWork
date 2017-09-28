@@ -1,3 +1,7 @@
+//Nathaniel Clayton - COSC 1437
+//Using Classes Program - Complex Numbers
+// ------  9/19/207
+
 //Class Definition for Complex Numbers
 class Complex {
 
