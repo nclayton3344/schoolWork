@@ -1,0 +1,22 @@
+George Boole, Jr.
+1920.85
+William Gates
+500        
+Grace Murray Hopper
+22098.5
+Albert Einstein
+2517.11
+Steven Jobs
+7777.77
+Warren Buffett
+.52
+Mark Zuckerberg
+1750000
+Del Harvey
+25000
+Ginni Rometty
+1000000
+Susan Wojcicki
+200.6
+Jeff Bezos
+9000.75

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="headlineGen.cpp">
+    <ClCompile Include="ch6DiceGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
