@@ -1,0 +1,381 @@
+*****************************************************************
+
+Welcome to the List Maker App! - What Would You Like to Do?
+Enter One of the Options Below to Continue.
+
+*****************************************************************
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+1
+What would you like to add to the list?
+orange
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+1
+What would you like to add to the list?
+lock
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+1
+What would you like to add to the list?
+animal
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+5
+
+***** ASCENDING LIST *****
+animal
+lock
+orange
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+1
+What would you like to add to the list?
+quick
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+1
+What would you like to add to the list?
+brown
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+1
+What would you like to add to the list?
+apple
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+1
+What would you like to add to the list?
+baseball
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+1
+What would you like to add to the list?
+backup
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+1
+What would you like to add to the list?
+mouse
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+5
+
+***** ASCENDING LIST *****
+animal
+apple
+backup
+baseball
+brown
+lock
+mouse
+orange
+quick
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+4
+Number of Items in the List: 9
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+3
+What Item Would You Like to Remove from the List?
+orange
+orange has been removed from the list.
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+3
+What Item Would You Like to Remove from the List?
+apple
+apple has been removed from the list.
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+5
+
+***** ASCENDING LIST *****
+animal
+backup
+baseball
+brown
+lock
+mouse
+quick
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+6
+
+***** DESCENDING LIST *****
+quick
+mouse
+lock
+brown
+baseball
+backup
+animal
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+2
+What value would you like to check?
+apple
+Sorry, we did not find apple in the list.
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+2
+What value would you like to check?
+animal
+We found animal in the list!
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+4
+Number of Items in the List: 7
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+7
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+5
+Sorry, the List is Empty.
+
+Would you like to continue? Enter Y/N
+y
+
+1.) Add Item to List
+2.) Find an Item in The List
+3.) Remove an Item from The List
+4.) Display Number of Items in the List
+5.) Display The List in Ascending Order
+6.) Display the List in Descending Order
+7.) Delete List
+
+
+6
+Sorry, the List is Empty.
+
+Would you like to continue? Enter Y/N

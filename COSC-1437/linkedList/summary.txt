@@ -1,0 +1,101 @@
+MAIN.CPP
+	- main()
+		This function displays a menu for the user to add items to a list.
+		Based on user input, the menu makes changes or accessess the list 
+		for various functions defined by the menu.
+
+	- displayMenu()
+		This function displays a menu to the console.
+
+SortedList.h <- function implementation included in header due to various linker issues with 
+		templated classes
+	
+	*******PUBLIC*******
+
+	-SortedList()
+		This is a constructor function that initializes head to nullptr
+	
+	-SortedList(Copy Constructor)
+		This constructor takes an argument of same data type and makes
+		a deep copy of the linked list
+	
+	-~SortedList()
+		This destructor releases the dynamically allocated memory held
+		by the linked list
+
+	-remove()
+		This public member allows the user to remove a given value from
+		the linked list. 
+
+	-insert()
+		This public member allows the user to insert an item into the sorted
+		linked list.
+
+	-find()
+		This public member allows the user to determine if a given value is
+		found within the sorted list.
+
+	-ascending()
+		This public member displays the values in the sorted list to the console
+		in ascending order.
+
+	-descending()
+		This public member displays the values in the sorted list to the console
+		in descending order.
+	
+	-deleteList()
+		This public member deletes the contents of the list and releases the memory.
+
+	-operator=()
+		This operator overload allows the user to utilize the assignment operator
+		to make a record copy of an object of type SortedList
+
+	-size()
+		This operator returns the number of elements in the linked list
+
+	*******PRIVATE*******
+
+	-deleteNode()
+		This function cycles through the linked list searching for a user given
+		value. If the value is found, the node attached to the value is deleted
+		from the linked list and the memory is released. If the value is not found,
+		the function displays a message to the user in the console. The function is 
+		not recursive as it does not call back to itself. I chose this design because
+		I could not figure out how to do it recursively.
+
+	-insertRecursive()
+		This function inserts an item into the SortedList in the proper position.
+		The function checks each item in the list to determine where to insert
+		the item based on the order of the items in the list. The function uses
+		recursion, if the first item in the list is smaller than the item being	
+		inserted, the functions calls itself with the next item in the list and	
+		the user given value. Recursion was used to decrease the lines of code.
+		
+	-copyList()
+		This function makes a deep copy of two SortedList objects. The function traverses
+		the list that is to be copied and creates a copy of each item in the list in a new
+		SortedList object. The function does not use recursion. It traverses the "to-be-copied"
+		list and creates a copy of each node individually in a loop.
+
+	-countNodes()
+		This function returns the number of elements in the linked list object. The function
+		uses recursion. For each item in the list, the function adds 1 and calls itself with
+		the next node in the list. Once the function reaches the last item in the list, the function
+		returns back to the calling function.
+
+	-displayForward()
+		This function uses recursion to traverse the SortedList object and display each
+		value to the console in ascending order. Recursion was chosen to shorten the code.
+		The function displays the value and calls itself again with the next node in the list.
+	
+	-displayReverse()
+		This function uses recursion to traverse the SortedList object and display each
+		value to the console in descending order. Recursion was chosen to shorten the code.
+		The function calls itself with the next node in the list until it reaches the end
+		and finally displays the values to the console.
+
+	-erase()
+		This function recursively traverses the SortedList object and deletes each node in
+		the list. After deleting the first, it calls itself to remove the next value in the
+		SortedList object. Once complete, the function returns to the calling function.
+		Recursion was chose to shorten the code and to practice recursive functions.

@@ -1,0 +1,11 @@
+﻿  productionWFn.cpp
+  main.cpp
+d:\schoolwork\cosc-1437\derivedclasses\derivedclasses\main.cpp(43): warning C4101: 'pwCount': unreferenced local variable
+d:\schoolwork\cosc-1437\derivedclasses\derivedclasses\main.cpp(43): warning C4101: 'superCount': unreferenced local variable
+d:\schoolwork\cosc-1437\derivedclasses\derivedclasses\main.cpp(43): warning C4101: 'leadCount': unreferenced local variable
+  employeeFn.cpp
+  TeamLead.cpp
+  ShiftSuper.cpp
+  Generating Code...
+  DerivedClasses.vcxproj -> D:\schoolWork\COSC-1437\DerivedClasses\Debug\DerivedClasses.exe
+  DerivedClasses.vcxproj -> D:\schoolWork\COSC-1437\DerivedClasses\Debug\DerivedClasses.pdb (Partial PDB)
