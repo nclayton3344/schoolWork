@@ -1,0 +1,3 @@
+﻿  main.cpp
+e:\schoolwork\math-2305\guessnum\guessnum\main.cpp(33): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+  GuessNum.vcxproj -> E:\schoolWork\MATH-2305\GuessNum\Debug\GuessNum.exe
