@@ -1,0 +1,17 @@
+INSERT INTO CARDS VALUES (1, 105, '11/14/2016', 'Card 1', 'This guy...');
+INSERT INTO CARDS VALUES (2, 41, '11/16/2014', 'Card 22', 'Who?');
+INSERT INTO CARDS VALUES (2, 10, '11/12/2014', 'Card 99', 'slob');
+INSERT INTO CARDS VALUES (3, 75, '11/13/2013', 'Card 78', 'rookie');
+INSERT INTO CARDS VALUES (4, 25, '11/11/2014', 'Card 66', 'best card');
+INSERT INTO CARDS VALUES (3, 19, '11/10/2013', 'Card 74', 'trade soon');
+INSERT INTO CARDS VALUES (2, 85, '11/19/2010', 'Card 44', 'my team');
+INSERT INTO CARDS VALUES (1, 17, '11/14/2017', 'Card 321', 'fav player');
+INSERT INTO CARDS VALUES (2, 11, '11/12/2018', 'Card 498', 'Tuff');
+INSERT INTO CARDS VALUES (14, 17, '11/8/2018', 'Card 975', 'Good');
+INSERT INTO CARDS VALUES (15, 45, '11/8/2018', 'Card 435', 'TAverage');
+INSERT INTO CARDS VALUES (6, 65, '11/7/2015', 'Card 498', 'This guy sucks');
+INSERT INTO CARDS VALUES (7, 16, '01/18/2015', 'Card 1', 'No good player');
+INSERT INTO CARDS VALUES (8, 95, '02/18/2015', 'Card 77', 'Weak sauce');
+INSERT INTO CARDS VALUES (9, 75, '03/18/2015', 'Card 99', 'Lame dude');
+INSERT INTO CARDS VALUES (10, 35, '04/18/2015', 'Card 984', 'Best player');
+INSERT INTO CARDS VALUES (11, 102, '7/18/2015', 'Card 1235', 'Homerun winner');

@@ -1,0 +1,93 @@
+Student Name        Student ID #        Exam 1              Exam 2              Exam 3              Final Average       
+
+Samuel Alito        7534                81                  74                  80                  78.33               
+
+Al Bundy            3514                82                  79                  84                  81.67               
+
+John Cornyn         4591                65                  88                  70                  74.33               
+
+Tammy Duckworth     5973                88                  82                  72                  80.67               
+
+Jeff Flake          1415                85                  77                  75                  79.00               
+
+Bill Golberg        5574                90                  91                  88                  89.67               
+
+Bret Hart           1463                88                  76                  68                  77.33               
+
+Oren Hatch          6012                90                  88                  96                  91.33               
+
+Hank Hill           4510                80                  75                  82                  79.00               
+
+Hulk Hogan          7883                75                  82                  88                  81.67               
+
+Alex Jones          1776                75                  90                  76                  80.33               
+
+Elena Kagan         9109                75                  70                  81                  75.33               
+
+Anthony Kennedy     3345                75                  86                  95                  85.33               
+
+Patrick Leahy       1126                55                  40                  68                  54.33               
+
+Jennifer Lopez      9941                66                  77                  88                  77.00               
+
+Ada Lovelace        7777                100                 88                  85                  91.00               
+
+Joe Manchin         4878                80                  78                  92                  83.33               
+
+Rand Paul           1241                92                  91                  98                  93.67               
+
+Seth Rich           1738                88                  75                  65                  76.00               
+
+Kia Rio             8888                86                  76                  92                  84.67               
+
+Marco Rubio         2233                60                  62                  68                  63.33               
+
+Bernie Sanders      9221                65                  67                  77                  69.67               
+
+Randy Savage        1000                96                  84                  80                  86.67               
+
+Chuck Schumer       3010                75                  85                  95                  85.00               
+
+Luther Strange      1713                78                  72                  69                  73.00               
+
+Clarence Thomas     3709                85                  74                  86                  81.67               
+
+Donald Trump        8121                85                  96                  87                  89.33               
+
+Alan Turing         7892                77                  56                  88                  73.67               
+
+Elizabeth Warren    3221                76                  67                  77                  73.33               
+
+George Washington   4679                99                  91                  88                  92.67               
+
+Lonnie Wilkerson    5891                55                  45                  76                  58.67               
+
+
+
+
+****** CLASS STATISTICS: ******
+
+Total Number of Students in Class: 31
+
+The Class Average for Exam 1 is: 79.58
+
+The Class Average for Exam 2 is: 76.84
+
+The Class Average for Exam 3 is: 81.74
+
+4 students finished the class with an A. That's 12.90% of the class.
+
+12 students finished the class with a B. That's 38.71% of the class.
+
+11 students finished the class with a C. That's 35.48% of the class.
+
+2 students finished the class with a D. That's 6.45% of the class.
+
+2 students finished the class with an F. That's 6.45% of the class.
+
+The Class' Final Average: 79.39
+
+Rand Paul (1241) had the highest final average of 93.67
+
+Patrick Leahy (1126) had the lowest final average of 54.33
+

@@ -1,0 +1,18 @@
+Title: 
+	Display pythagorean triples
+
+Description: 
+	Calculates pythagorean triples up to number 500 for side1, side2, and hypotenuse
+
+Ingredients: 
+	counters for side1, side2, and hypotenuse
+
+
+Instructions:
+    For every possible side1, check every possible side2 with every possible hypotenuse against pythagorean theorem
+    display sets of numbers that meet the pythagorean theorem
+
+
+
+Completeness:
+	Program terminates once it has displayed the list of pythagorean sets

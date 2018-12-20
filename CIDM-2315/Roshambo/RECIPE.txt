@@ -1,0 +1,28 @@
+Title:
+	Rock, Paper, Scissors game
+
+Description:
+	A game played against the computer in which the winner is the 
+	best of three matches. The players weapon options include rock, paper,
+	and scissors. Each weapon defeats 1 weapon and loses to 1 weapon.
+	It's a game of luck/psychology.
+
+Ingredients:
+	1. playerThrow - this illustrates the players choice of weapon
+	2. cpuThrow - this illustrates the cpu choice of weapon
+	3. sentinel - controls loop to replay the game
+	4. optionArray - holds the options in string format
+	5. randomNum - generates a random number for CPU's choice
+	6. player/cpu wincounter - to track number of wins of player and cpu
+
+Instructions:
+	Ask player to throw rock paper or scissors
+	generate random number for cpu throw option
+	check for winner/tie
+	add to round win count for player or cpu
+	repeat until player or cpu wincount equals 2
+	display game winner
+
+Completeness:
+	Program terminates when user decides to stop playing
+	

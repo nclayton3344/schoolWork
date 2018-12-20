@@ -1,0 +1,22 @@
+Title: 
+	Two largest integer finder
+
+Description: 
+	Takes ten unique numbers from user and displays two largest of those numbers
+
+Ingredients: 
+	something to hold all ten user input numbers
+    something to hold largest and second largest values
+
+
+Instructions:
+    Loop ten times
+        get number from user
+        check if it's already been input
+        check if it's largest than second largest or largest
+        adjust values accordingly
+
+
+
+Completeness:
+	Program terminates once it has displayed the largest and second largest numbers

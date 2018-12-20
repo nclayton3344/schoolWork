@@ -1,0 +1,5 @@
+﻿  main.cpp
+main.obj : error LNK2019: unresolved external symbol "public: __thiscall Factorial<int>::Factorial<int>(int)" (??0?$Factorial@H@@QAE@H@Z) referenced in function _main
+main.obj : error LNK2019: unresolved external symbol "public: int __thiscall Factorial<int>::getIterativeFactorial(void)" (?getIterativeFactorial@?$Factorial@H@@QAEHXZ) referenced in function _main
+main.obj : error LNK2019: unresolved external symbol "public: __thiscall Factorial<double>::Factorial<double>(void)" (??0?$Factorial@N@@QAE@XZ) referenced in function _main
+D:\schoolWork\COSC-1437\RecursionP1\Debug\RecursionP1.exe : fatal error LNK1120: 3 unresolved externals

@@ -1,0 +1,11 @@
+C:\Users\Sid\assign\homework5\partOne\bin\Debug\netcoreapp2.1\partOne.deps.json
+C:\Users\Sid\assign\homework5\partOne\bin\Debug\netcoreapp2.1\partOne.runtimeconfig.json
+C:\Users\Sid\assign\homework5\partOne\bin\Debug\netcoreapp2.1\partOne.runtimeconfig.dev.json
+C:\Users\Sid\assign\homework5\partOne\bin\Debug\netcoreapp2.1\partOne.dll
+C:\Users\Sid\assign\homework5\partOne\bin\Debug\netcoreapp2.1\partOne.pdb
+C:\Users\Sid\assign\homework5\partOne\obj\Debug\netcoreapp2.1\partOne.csprojAssemblyReference.cache
+C:\Users\Sid\assign\homework5\partOne\obj\Debug\netcoreapp2.1\partOne.csproj.CoreCompileInputs.cache
+C:\Users\Sid\assign\homework5\partOne\obj\Debug\netcoreapp2.1\partOne.AssemblyInfoInputs.cache
+C:\Users\Sid\assign\homework5\partOne\obj\Debug\netcoreapp2.1\partOne.AssemblyInfo.cs
+C:\Users\Sid\assign\homework5\partOne\obj\Debug\netcoreapp2.1\partOne.dll
+C:\Users\Sid\assign\homework5\partOne\obj\Debug\netcoreapp2.1\partOne.pdb

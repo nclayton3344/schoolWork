@@ -1,0 +1,11 @@
+C:\Users\Sid\assign\homework8\dupElim\bin\Debug\netcoreapp2.1\dupElim.deps.json
+C:\Users\Sid\assign\homework8\dupElim\bin\Debug\netcoreapp2.1\dupElim.runtimeconfig.json
+C:\Users\Sid\assign\homework8\dupElim\bin\Debug\netcoreapp2.1\dupElim.runtimeconfig.dev.json
+C:\Users\Sid\assign\homework8\dupElim\bin\Debug\netcoreapp2.1\dupElim.dll
+C:\Users\Sid\assign\homework8\dupElim\bin\Debug\netcoreapp2.1\dupElim.pdb
+C:\Users\Sid\assign\homework8\dupElim\obj\Debug\netcoreapp2.1\dupElim.csprojAssemblyReference.cache
+C:\Users\Sid\assign\homework8\dupElim\obj\Debug\netcoreapp2.1\dupElim.csproj.CoreCompileInputs.cache
+C:\Users\Sid\assign\homework8\dupElim\obj\Debug\netcoreapp2.1\dupElim.AssemblyInfoInputs.cache
+C:\Users\Sid\assign\homework8\dupElim\obj\Debug\netcoreapp2.1\dupElim.AssemblyInfo.cs
+C:\Users\Sid\assign\homework8\dupElim\obj\Debug\netcoreapp2.1\dupElim.dll
+C:\Users\Sid\assign\homework8\dupElim\obj\Debug\netcoreapp2.1\dupElim.pdb

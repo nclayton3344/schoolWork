@@ -1,0 +1,24 @@
+Title: 
+	PI approximation calculator
+
+Description: 
+	Approximates PI given number of terms by user
+
+Ingredients: 
+	PI approximation
+    number of terms
+    term number it takes to reach pre-defined approximations
+
+
+Instructions:
+    Get number of terms to approximate by user
+    begin approximation
+    output term number and approximation
+    check if we have reached pre-defined level of precision
+    output data
+
+
+
+Completeness:
+	Program terminates once it has displayed the the terms and approximations as defined by user
+    

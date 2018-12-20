@@ -1,0 +1,28 @@
+C:\Users\kdana\Dropbox\WTAMU Dropbox\Fall 2018\CIDM 2315\Unit Testing\LeapYearUnitTest\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\kdana\Dropbox\WTAMU Dropbox\Fall 2018\CIDM 2315\Unit Testing\LeapYearUnitTest\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\kdana\Dropbox\WTAMU Dropbox\Fall 2018\CIDM 2315\Unit Testing\LeapYearUnitTest\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+C:\Users\kdana\Dropbox\WTAMU Dropbox\Fall 2018\CIDM 2315\Unit Testing\LeapYearUnitTest\bin\Debug\netcoreapp2.1\LeapYearUnitTest.deps.json
+C:\Users\kdana\Dropbox\WTAMU Dropbox\Fall 2018\CIDM 2315\Unit Testing\LeapYearUnitTest\bin\Debug\netcoreapp2.1\LeapYearUnitTest.runtimeconfig.json
+C:\Users\kdana\Dropbox\WTAMU Dropbox\Fall 2018\CIDM 2315\Unit Testing\LeapYearUnitTest\bin\Debug\netcoreapp2.1\LeapYearUnitTest.runtimeconfig.dev.json
+C:\Users\kdana\Dropbox\WTAMU Dropbox\Fall 2018\CIDM 2315\Unit Testing\LeapYearUnitTest\bin\Debug\netcoreapp2.1\LeapYearUnitTest.dll
+C:\Users\kdana\Dropbox\WTAMU Dropbox\Fall 2018\CIDM 2315\Unit Testing\LeapYearUnitTest\bin\Debug\netcoreapp2.1\LeapYearUnitTest.pdb
+C:\Users\kdana\Dropbox\WTAMU Dropbox\Fall 2018\CIDM 2315\Unit Testing\LeapYearUnitTest\obj\Debug\netcoreapp2.1\LeapYearUnitTest.csprojAssemblyReference.cache
+C:\Users\kdana\Dropbox\WTAMU Dropbox\Fall 2018\CIDM 2315\Unit Testing\LeapYearUnitTest\obj\Debug\netcoreapp2.1\LeapYearUnitTest.csproj.CoreCompileInputs.cache
+C:\Users\kdana\Dropbox\WTAMU Dropbox\Fall 2018\CIDM 2315\Unit Testing\LeapYearUnitTest\obj\Debug\netcoreapp2.1\LeapYearUnitTest.AssemblyInfoInputs.cache
+C:\Users\kdana\Dropbox\WTAMU Dropbox\Fall 2018\CIDM 2315\Unit Testing\LeapYearUnitTest\obj\Debug\netcoreapp2.1\LeapYearUnitTest.AssemblyInfo.cs
+C:\Users\kdana\Dropbox\WTAMU Dropbox\Fall 2018\CIDM 2315\Unit Testing\LeapYearUnitTest\obj\Debug\netcoreapp2.1\LeapYearUnitTest.dll
+C:\Users\kdana\Dropbox\WTAMU Dropbox\Fall 2018\CIDM 2315\Unit Testing\LeapYearUnitTest\obj\Debug\netcoreapp2.1\LeapYearUnitTest.pdb
+C:\Users\Sid\assign\homework7\LeapYearUnitTest\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\Sid\assign\homework7\LeapYearUnitTest\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\Sid\assign\homework7\LeapYearUnitTest\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+C:\Users\Sid\assign\homework7\LeapYearUnitTest\bin\Debug\netcoreapp2.1\LeapYearUnitTest.deps.json
+C:\Users\Sid\assign\homework7\LeapYearUnitTest\bin\Debug\netcoreapp2.1\LeapYearUnitTest.runtimeconfig.json
+C:\Users\Sid\assign\homework7\LeapYearUnitTest\bin\Debug\netcoreapp2.1\LeapYearUnitTest.runtimeconfig.dev.json
+C:\Users\Sid\assign\homework7\LeapYearUnitTest\bin\Debug\netcoreapp2.1\LeapYearUnitTest.dll
+C:\Users\Sid\assign\homework7\LeapYearUnitTest\bin\Debug\netcoreapp2.1\LeapYearUnitTest.pdb
+C:\Users\Sid\assign\homework7\LeapYearUnitTest\obj\Debug\netcoreapp2.1\LeapYearUnitTest.csprojAssemblyReference.cache
+C:\Users\Sid\assign\homework7\LeapYearUnitTest\obj\Debug\netcoreapp2.1\LeapYearUnitTest.csproj.CoreCompileInputs.cache
+C:\Users\Sid\assign\homework7\LeapYearUnitTest\obj\Debug\netcoreapp2.1\LeapYearUnitTest.AssemblyInfoInputs.cache
+C:\Users\Sid\assign\homework7\LeapYearUnitTest\obj\Debug\netcoreapp2.1\LeapYearUnitTest.AssemblyInfo.cs
+C:\Users\Sid\assign\homework7\LeapYearUnitTest\obj\Debug\netcoreapp2.1\LeapYearUnitTest.dll
+C:\Users\Sid\assign\homework7\LeapYearUnitTest\obj\Debug\netcoreapp2.1\LeapYearUnitTest.pdb

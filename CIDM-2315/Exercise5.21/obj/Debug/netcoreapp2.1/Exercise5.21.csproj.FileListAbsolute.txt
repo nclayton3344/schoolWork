@@ -1,0 +1,11 @@
+C:\Users\Sid\Documents\cidm2315\Exercise5.21\bin\Debug\netcoreapp2.1\Exercise5.21.deps.json
+C:\Users\Sid\Documents\cidm2315\Exercise5.21\bin\Debug\netcoreapp2.1\Exercise5.21.runtimeconfig.json
+C:\Users\Sid\Documents\cidm2315\Exercise5.21\bin\Debug\netcoreapp2.1\Exercise5.21.runtimeconfig.dev.json
+C:\Users\Sid\Documents\cidm2315\Exercise5.21\bin\Debug\netcoreapp2.1\Exercise5.21.dll
+C:\Users\Sid\Documents\cidm2315\Exercise5.21\bin\Debug\netcoreapp2.1\Exercise5.21.pdb
+C:\Users\Sid\Documents\cidm2315\Exercise5.21\obj\Debug\netcoreapp2.1\Exercise5.21.csprojAssemblyReference.cache
+C:\Users\Sid\Documents\cidm2315\Exercise5.21\obj\Debug\netcoreapp2.1\Exercise5.21.csproj.CoreCompileInputs.cache
+C:\Users\Sid\Documents\cidm2315\Exercise5.21\obj\Debug\netcoreapp2.1\Exercise5.21.AssemblyInfoInputs.cache
+C:\Users\Sid\Documents\cidm2315\Exercise5.21\obj\Debug\netcoreapp2.1\Exercise5.21.AssemblyInfo.cs
+C:\Users\Sid\Documents\cidm2315\Exercise5.21\obj\Debug\netcoreapp2.1\Exercise5.21.dll
+C:\Users\Sid\Documents\cidm2315\Exercise5.21\obj\Debug\netcoreapp2.1\Exercise5.21.pdb

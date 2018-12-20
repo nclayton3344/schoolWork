@@ -1,0 +1,24 @@
+Open Input/Output Files:
+	Check for load failure. Exit if Failed.
+	
+
+Load Array of Students data type:
+	Take student data from file into struct
+	Count students as they're entered
+	
+Print Posted Grade Sheet:
+	Sort array by Student ID
+	Output ID and Final Avg of each student
+	Output Class Average
+
+Print Teacher's Report:
+	sort array by student last name
+	Check student's letter grade
+	check lowest/highest scoring student
+	Output All Student Data (neatly)
+	Output Class Statistics
+		Number of Students
+		Averages for Exam 1,2,3
+		% of Each Letter Grades
+		Class Final Average
+		Lowest/Highest scoring student

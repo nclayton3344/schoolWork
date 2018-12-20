@@ -1,0 +1,11 @@
+C:\Users\Sid\assign\homework8\intList\bin\Debug\netcoreapp2.1\intList.deps.json
+C:\Users\Sid\assign\homework8\intList\bin\Debug\netcoreapp2.1\intList.runtimeconfig.json
+C:\Users\Sid\assign\homework8\intList\bin\Debug\netcoreapp2.1\intList.runtimeconfig.dev.json
+C:\Users\Sid\assign\homework8\intList\bin\Debug\netcoreapp2.1\intList.dll
+C:\Users\Sid\assign\homework8\intList\bin\Debug\netcoreapp2.1\intList.pdb
+C:\Users\Sid\assign\homework8\intList\obj\Debug\netcoreapp2.1\intList.csprojAssemblyReference.cache
+C:\Users\Sid\assign\homework8\intList\obj\Debug\netcoreapp2.1\intList.csproj.CoreCompileInputs.cache
+C:\Users\Sid\assign\homework8\intList\obj\Debug\netcoreapp2.1\intList.AssemblyInfoInputs.cache
+C:\Users\Sid\assign\homework8\intList\obj\Debug\netcoreapp2.1\intList.AssemblyInfo.cs
+C:\Users\Sid\assign\homework8\intList\obj\Debug\netcoreapp2.1\intList.dll
+C:\Users\Sid\assign\homework8\intList\obj\Debug\netcoreapp2.1\intList.pdb

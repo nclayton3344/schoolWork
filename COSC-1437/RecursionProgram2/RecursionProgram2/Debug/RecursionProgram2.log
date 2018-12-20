@@ -1,0 +1,4 @@
+﻿  main.cpp
+e:\schoolwork\cosc-1437\recursionprogram2\recursionprogram2\main.cpp(18): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  RecursionProgram2.vcxproj -> E:\schoolWork\COSC-1437\RecursionProgram2\Debug\RecursionProgram2.exe
+  RecursionProgram2.vcxproj -> E:\schoolWork\COSC-1437\RecursionProgram2\Debug\RecursionProgram2.pdb (Partial PDB)

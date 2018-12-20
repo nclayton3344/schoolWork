@@ -1,0 +1,24 @@
+Title: 
+	Credit Limit Calculator
+
+Description: 
+	Program to calculate a customer's account balance monthly.
+
+Ingredients: 
+	account_balance - customers balance at the beginning of the billing cycle
+    credits - credits payed into customer's account for the billing cycle
+    charges - charges for current billing cycle
+    accountNum - customers account number
+    credit_limit - customers credit Limit
+    sentinel - to flag for repeat
+    new_balance - remaining balance for current billing cycle
+
+Instructions:
+    Loop until user quits:
+        Get account number, beginning balance, charges, credits, credit limit from user
+        calculate new balance
+        display balance and alert if new balance is greater than credit limit
+
+
+Completeness:
+	After calculating customer's balance, user must quit the program

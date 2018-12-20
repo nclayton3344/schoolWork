@@ -1,0 +1,9 @@
+at beginning a = 1
+Inside Mystery1 a = 11
+After Mystery1 a = 1
+Inside Myster2 a = 2
+After Mystery2 a = 2
+Before Mystery3 a = 2 str = "Halloween"  b = 42
+Inside Mystery3 a = 5  str = "Mystery3 Modification"  b = 20
+After Mystery3  a = 2  str = "Mystery3 Modification" b = 20
+

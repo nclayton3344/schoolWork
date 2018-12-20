@@ -1,0 +1,16 @@
+INSERT INTO COLLECTIONS VALUES (1, 'Favorites', 'My Favorite Cards', 12);
+INSERT INTO COLLECTIONS VALUES (2, 'Junk Cards', 'These are garbage', 18);
+INSERT INTO COLLECTIONS VALUES (3, 'Rookies', 'All rookie cards', 16);
+INSERT INTO COLLECTIONS VALUES (4, 'My Team', 'These are all my team', 12);
+INSERT INTO COLLECTIONS VALUES (5, 'MLB', 'MLB Cards', 9);
+INSERT INTO COLLECTIONS VALUES (6, 'My Fav', 'Favorite Card Ever', 1);
+INSERT INTO COLLECTIONS VALUES (7, 'Temp', 'Temp Storage', 7);
+INSERT INTO COLLECTIONS VALUES (8, 'Wasted', 'Wasted money cards', 7);
+INSERT INTO COLLECTIONS VALUES (9, 'Crap', 'Crappy Cards', 8);
+INSERT INTO COLLECTIONS VALUES (10, 'Top Cards', 'These are topps', 6);
+INSERT INTO COLLECTIONS VALUES (11, 'Lame Cards', 'Crappy cards', 4);
+INSERT INTO COLLECTIONS VALUES (12, 'the best', 'the best cards ever', 45);
+INSERT INTO COLLECTIONS VALUES (13, 'no names', 'who are these ppl', 13);
+INSERT INTO COLLECTIONS VALUES (14, 'all star', 'all star players', 45);
+INSERT INTO COLLECTIONS VALUES (15, 'trash', 'trash players only', 68);
+INSERT INTO COLLECTIONS VALUES (16, 'whole collection', 'every card i have', 78);

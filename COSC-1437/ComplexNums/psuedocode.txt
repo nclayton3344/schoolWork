@@ -1,0 +1,27 @@
+Create Complex Class:
+	-Create Header File
+	-Variables for real/imag numbers (type double)
+	-Member Functions:
+		overload insertion operator
+		default constructor (init real & imag to 0)
+		explicit constructor:
+			assigns real and imag based on user input
+		AddComplexNums:
+			overload + operator to add two complex numbers together
+		MultiplyComplexNums:
+			overload * operator multiply two complex numbers (foil method)
+		DivideComplexNums:
+			overload / operator to divide two complex numbers
+		Equality Overload:
+			overload == and != to check complex numbers for equality
+		Print Function:	
+			overload << operator to output Complex number
+
+Client Code:
+	Print Header with Date/Time
+	Get Complex Number Set from user
+	Get second Complex Set from user
+	assign user defined values to complex variables
+	output product of both user defined complex numbers
+	output sum of both user defined complex numbers
+	repeat if user wants to

@@ -1,0 +1,30 @@
+Title: 
+	Largest Number Picker
+
+Description: 
+	Pick the largest number from a set of 10 user input numbers.
+
+Ingredients: 
+	number - the most recently input number from user
+	counter - used to count number of times user inputs data
+	largest - to hold the largest value as defined by user
+
+Instructions:
+	initialize counter to equal zero (nothing counted yet)
+	initialize largest to smallest possible number
+
+	Loop While counter < 10 -
+		Ask user for a number
+		assign user input number to variable number
+		check if number is greater than largest
+		if so, assign number to largest
+		otherwise, do nothing
+		add one to counter to eventually terminate loop
+	End Loop 
+
+	Display largest number
+
+
+Completeness:
+	The program is complete once it has displayed the largest number
+	of the ten numbers that the user input.

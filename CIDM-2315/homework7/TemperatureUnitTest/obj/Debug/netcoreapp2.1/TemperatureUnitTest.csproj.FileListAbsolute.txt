@@ -1,0 +1,14 @@
+C:\Users\Sid\assign\homework7\TemperatureUnitTest\obj\Debug\netcoreapp2.1\TemperatureUnitTest.csprojAssemblyReference.cache
+C:\Users\Sid\assign\homework7\TemperatureUnitTest\obj\Debug\netcoreapp2.1\TemperatureUnitTest.csproj.CoreCompileInputs.cache
+C:\Users\Sid\assign\homework7\TemperatureUnitTest\obj\Debug\netcoreapp2.1\TemperatureUnitTest.AssemblyInfoInputs.cache
+C:\Users\Sid\assign\homework7\TemperatureUnitTest\obj\Debug\netcoreapp2.1\TemperatureUnitTest.AssemblyInfo.cs
+C:\Users\Sid\assign\homework7\TemperatureUnitTest\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\Sid\assign\homework7\TemperatureUnitTest\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\Sid\assign\homework7\TemperatureUnitTest\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+C:\Users\Sid\assign\homework7\TemperatureUnitTest\bin\Debug\netcoreapp2.1\TemperatureUnitTest.deps.json
+C:\Users\Sid\assign\homework7\TemperatureUnitTest\bin\Debug\netcoreapp2.1\TemperatureUnitTest.runtimeconfig.json
+C:\Users\Sid\assign\homework7\TemperatureUnitTest\bin\Debug\netcoreapp2.1\TemperatureUnitTest.runtimeconfig.dev.json
+C:\Users\Sid\assign\homework7\TemperatureUnitTest\bin\Debug\netcoreapp2.1\TemperatureUnitTest.dll
+C:\Users\Sid\assign\homework7\TemperatureUnitTest\bin\Debug\netcoreapp2.1\TemperatureUnitTest.pdb
+C:\Users\Sid\assign\homework7\TemperatureUnitTest\obj\Debug\netcoreapp2.1\TemperatureUnitTest.dll
+C:\Users\Sid\assign\homework7\TemperatureUnitTest\obj\Debug\netcoreapp2.1\TemperatureUnitTest.pdb

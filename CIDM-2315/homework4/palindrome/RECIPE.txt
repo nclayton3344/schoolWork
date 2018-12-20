@@ -1,0 +1,19 @@
+Title: 
+	5 digit palindrome checker
+
+Description: 
+	Takes a five digit number from user and displays whether it is palindrome
+
+Ingredients: 
+	something to hold user defined number
+
+
+Instructions:
+    get user input number
+    ensure number is 5 digits
+    check for equality in 1st/Last && 2nd/secondLast
+    display info
+
+
+Completeness:
+	Program terminates once it has displayed whether user's number is palindrome

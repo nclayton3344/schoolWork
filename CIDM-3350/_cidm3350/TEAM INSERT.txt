@@ -1,0 +1,15 @@
+INSERT INTO TEAM VALUES ('Orioles','BAL', 'Baltimore');
+INSERT INTO TEAM VALUES ('Red Sox','BOS', 'Boston');
+INSERT INTO TEAM VALUES ('White Sox','SOX', 'Chicago');
+INSERT INTO TEAM VALUES ('Indians','CLE', 'Cleveland');
+INSERT INTO TEAM VALUES ('Tigers','DET', 'Detroit');
+INSERT INTO TEAM VALUES ('Astros','HOU', 'Houston');
+INSERT INTO TEAM VALUES ('Royals','KC', 'Kansas City');
+INSERT INTO TEAM VALUES ('Angels','LAA', 'Los Angeles');
+INSERT INTO TEAM VALUES ('Twins','MIN', 'Minnesota');
+INSERT INTO TEAM VALUES ('Yankees','NYY', 'New York');
+INSERT INTO TEAM VALUES ('Athletics','OAK', 'Oakland');
+INSERT INTO TEAM VALUES ('Mariners','SEA', 'Seattle');
+INSERT INTO TEAM VALUES ('Rays','TB', 'Tampa Bay');
+INSERT INTO TEAM VALUES ('Rangers','TX', 'Texas');
+INSERT INTO TEAM VALUES ('Blue Jays','TOR', 'Toronto');

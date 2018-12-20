@@ -1,0 +1,81 @@
+Student Name        Student ID #        Exam 1              Exam 2              Exam 3              Final Average       
+
+Anna Able           8823                86                  76                  92                  84.67               
+
+Alan Archer         8883                75                  82                  88                  81.67               
+
+Nathan Atkins       5673                88                  82                  72                  80.67               
+
+Keith Brookfield    4691                65                  88                  70                  74.33               
+
+Cindy Crawford      3221                65                  67                  77                  69.67               
+
+John Doe            1145                45                  45                  45                  45.00               
+
+David Golding       5574                90                  91                  88                  89.67               
+
+Bob Heather         4500                80                  75                  82                  79.00               
+
+May Jones           6002                90                  88                  96                  91.33               
+
+Lonnie Larks        5880                55                  45                  76                  58.67               
+
+Elisa Links         1731                75                  90                  76                  80.33               
+
+Albert Lopez        9971                66                  77                  88                  77.00               
+
+Monte Marquez       3309                85                  74                  86                  81.67               
+
+Sally Marsh         3044                82                  79                  84                  81.67               
+
+Earl Miller         1926                55                  70                  68                  64.33               
+
+Anne Phillips       3321                76                  67                  77                  73.33               
+
+Brian Ramirez       3020                75                  85                  95                  85.00               
+
+Jose Rangel         6071                88                  75                  65                  76.00               
+
+Irvine Rich         1878                80                  78                  92                  83.33               
+
+Jema Richards       9901                92                  90                  98                  93.33               
+
+James Schway        1209                85                  56                  87                  76.00               
+
+Sammie Stevens      9213                78                  72                  69                  73.00               
+
+Emma Stout          3415                85                  77                  75                  79.00               
+
+Zelda Zen           9999                75                  70                  81                  75.33               
+
+Laurie Zinc         1133                92                  88                  78                  86.00               
+
+
+
+
+****** CLASS STATISTICS: ******
+
+Total Number of Students in Class: 25
+
+The Class Average for Exam 1 is: 77.12
+
+The Class Average for Exam 2 is: 75.48
+
+The Class Average for Exam 3 is: 80.20
+
+2 students finished the class with an A. That's 8.00% of the class.
+
+10 students finished the class with a B. That's 40.00% of the class.
+
+9 students finished the class with a C. That's 36.00% of the class.
+
+2 students finished the class with a D. That's 8.00% of the class.
+
+2 students finished the class with an F. That's 8.00% of the class.
+
+The Class' Final Average: 77.60
+
+Jema Richards (9901) had the highest final average of 93.33
+
+John Doe (1145) had the lowest final average of 45.00
+
