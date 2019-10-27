@@ -1,0 +1,66 @@
+# Nathaniel Clayton
+# rsum.ys
+# October 27, 2019
+# Archlab Part A
+
+init:   
+	irmovq  Stack, %rsp     # Set up stack pointer
+        rrmovq  %rsp, %rbp      # Set up base pointer
+        irmovq  ele1, %rax      # pass linked list in arg register rax
+        pushq   %rax            # push rax onto the stack
+        call    rsum_list        # call sum_list
+        halt                    # halt program
+
+
+# Sample linked list
+.align 8
+
+ele1:
+	.quad 0x00000a
+	.quad ele2
+
+ele5:
+	.quad 0x0e0000
+	.quad ele6
+
+ele6:
+	.quad 0xf00000
+	.quad 0
+
+ele4:
+	.quad 0x00d000
+	.quad ele5
+
+ele3:
+	.quad 0x000c00
+	.quad ele4
+
+ele2:
+	.quad 0x0000b0
+	.quad ele3
+
+rsum_list:   
+	pushq   %rbp		# preserve base pointer
+        rrmovq  %rsp, %rbp	# set frame ptr
+	pushq 	%r8		# preserve rbx
+	mrmovq  16(%rbp), %rax	# retrieve list node
+	andq	%rax, %rax	# test list == null/0s
+	je	zero		# return zero
+	mrmovq	(%rax), %r8	# val = list->val
+	mrmovq	8(%rax), %rax	# list->next
+	pushq	%rax		# list-next stack param passing
+	call	rsum_list
+	addq	%rbx, %rax	# val += result
+	jmp	end
+
+zero:
+	xorq	%rax, %rax	# return zero
+end:
+	mrmovq  -8(%rbp), %rbx	# restore rbx per callee-save convention
+	rrmovq 	%rbp, %rsp	# remove stack frame
+	popq	%rbp		# restore base pointer
+	ret	
+	
+
+        .pos 0x200 # ensure stack has plenty of room
+Stack:

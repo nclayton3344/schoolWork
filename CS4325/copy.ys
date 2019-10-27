@@ -1,0 +1,66 @@
+# Nathaniel Clayton
+# copy.ys
+# October 27, 2019
+# Archlab Part A
+
+init:
+	irmovq Stack, %rsp 	# set stack
+	rrmovq %rsp, %rbp 	# set base pointer to stack
+	irmovq $6, %rax 		# len = 6
+	pushq  %rax 		# len as param	
+	irmovq dest, %rax 	# dest 
+	pushq  %rax 		# dest as param		
+	irmovq src, %rax 	# src
+	pushq  %rax 		# src as param
+	call   copy_block 	# call copy_block
+	halt
+	
+.align 8
+# Source block
+src:
+	.quad 0x00000a
+	.quad 0x0000b0
+	.quad 0x000c00
+	.quad 0x00d000
+	.quad 0x0e0000
+	.quad 0xf00000
+
+# Destination block
+dest:
+	.quad 0x111111
+	.quad 0x222222
+	.quad 0x333333
+	.quad 0x444444
+	.quad 0x555555
+	.quad 0x666666
+	
+	
+copy_block: 
+	pushq  %rbp		# preserve base pointer 
+	rrmovq %rsp,%rbp	# frame ptr 
+	xorq   %rax,%rax		# result = 0
+	irmovq $8,%r8		# constant 8
+	irmovq $1,%r10		# constant 1 
+	mrmovq 16(%rbp),%rdi	# rdi = src 
+	mrmovq 24(%rbp),%rcx	# rcx = dest 
+	mrmovq 32(%rbp),%rdx	# rdx = len
+	andq   %rdx,%rdx	# test len == 0 
+	je     end
+ 
+loop:			
+	mrmovq (%rdi), %rsi	# val = *src  
+	rmmovq %rsi, (%rcx)	# *dest = val  
+	addq   %r8, %rdi	# src++ 
+	addq   %r8, %rcx	# dest++ 
+	subq   %r10, %rdx	# len-- 
+	xorq   %rsi, %rax	# result ^= val
+	andq   %rdx, %rdx	# test len == 0 
+	jg     loop		# loop up
+ 
+end:		
+	rrmovq %rbp,%rsp	# remove frame 
+	popq   %rbp		# restore base pointer 
+	ret			# Return result
+
+	.pos 0x200 # ensure stack has plenty of room
+Stack:

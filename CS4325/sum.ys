@@ -1,0 +1,63 @@
+# Nathaniel Clayton
+# sum.ys
+# October 27, 2019
+# Archlab Part A
+
+init:   
+	irmovq  Stack, %rsp     # Set up stack pointer
+        rrmovq  %rsp, %rbp       # Set up base pointer
+        irmovq  ele1, %rax      # pass linked list in arg register rax
+        pushq   %rax            # push rax onto the stack
+        call    sum_list        # call sum_list
+        halt                    # halt program
+
+
+# Sample linked list
+.align 8
+
+ele1:
+	.quad 0x00000a
+	.quad ele2
+
+ele5:
+	.quad 0x0e0000
+	.quad ele6
+
+ele6:
+	.quad 0xf00000
+	.quad 0
+
+ele4:
+	.quad 0x00d000
+	.quad ele5
+
+ele3:
+	.quad 0x000c00
+	.quad ele4
+
+ele2:
+	.quad 0x0000b0
+	.quad ele3
+
+sum_list:   
+	pushq   %rbp
+        rrmovq  %rsp, %rbp
+        xorq    %rax, %rax       # val = 0
+        mrmovq  16(%rbp), %rdx   # grab list from the stack
+        andq    %rdx, %rdx       # test list == null/0
+        je      end
+
+loop:       
+	mrmovq  (%rdx), %rcx     # list->val
+	addq    %rcx, %rax       # val += list->val
+        mrmovq  8(%rdx), %rdx    # list = list->next
+        andq    %rdx, %rdx       # test list == null/0
+        jne     loop
+
+end:        
+	rrmovq  %rbp, %rsp       #
+        popq    %rbp             # preserve base/stack pointers
+        ret
+
+        .pos 0x200 # ensure stack has plenty of room
+Stack:
