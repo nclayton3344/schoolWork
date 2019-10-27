@@ -1,7 +1,9 @@
-# Nathaniel Clayton
-# copy.ys
-# October 27, 2019
-# Archlab Part A
+##############################
+# Nathaniel Clayton	     #
+# copy.ys                    #
+# October 27, 2019           #
+# Archlab Part A             #
+##############################
 
 init:
 	irmovq Stack, %rsp 	# set stack

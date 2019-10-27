@@ -1,7 +1,9 @@
-# Nathaniel Clayton
-# rsum.ys
-# October 27, 2019
-# Archlab Part A
+##############################
+# Nathaniel Clayton	     #
+# rsum.ys                    #
+# October 27, 2019           #
+# Archlab Part A             #
+##############################
 
 init:   
 	irmovq  Stack, %rsp     # Set up stack pointer
