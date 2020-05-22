@@ -1,0 +1,42 @@
+**********************************************************************
+* A PROGRAM TO DISPLAY THE SUM OF THE FIRST N SQUARES                *
+*                                                                    *
+**********************************************************************
+         TITLE 'Author: Nathan Clayton Version 3/10/20'
+LAB3     START 0            ; first line of the program
+         PRINT NOGEN        ; suppresses expansion of macros used
+         BASR 15,0          ; This and next are required
+         USING *,15
+*
+BEGIN    L 2,N              ;load GR2 with value of N
+         L 4,ZERO
+*
+NTH      LR 5,2
+         C 5,ZERO
+         BZ OUTPUT
+*
+SQUARE   AR 4,2                   ;add GR3 to GR4  SUM += N
+         S 5,ONE                  ;subtract 1 from GR5
+         C 5,ZERO                 ;compare GR5 and content of ZERO
+         BC B'0010',SQUARE        ;branch if GR5 > ZERO to SQUARE
+         S 2,ONE
+         BC B'1111',NTH
+*
+OUTPUT   L 2,N
+         CONVERTO 2,NVAL_V
+         PRINTOUT NVAL,HEADER=NO
+         CONVERTO 4,MSG_V
+         PRINTOUT MSG,HEADER=NO
+         PRINTOUT *,Header=NO     ; terminate quietly
+*
+NVAL     DC 0CL25
+         DC C'VALUE OF N = '
+NVAL_V   DC CL12'            '
+MSG      DC 0CL40
+         DC C'SUM OF SQUARES = '
+MSG_V    DC CL12'            '
+N        DC F'100'
+ONE      DC F'1'
+ZERO     DC F'0'
+SUM      DS F
+         END LAB3

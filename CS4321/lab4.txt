@@ -1,0 +1,39 @@
+**********************************************************************
+* A PROGRAM TO DISPLAY THE MAX AND MIN VALUES OF AN ARRAY            *
+*                                                                    *
+**********************************************************************
+         TITLE 'Author: Nathan Clayton Version 3/10/20'
+HW4      START 0            ; first line of the program
+         PRINT NOGEN        ; suppresses expansion of macros used
+         BASR 15,0          ; This and next are required
+         USING *,15
+*
+BEGIN    L 2,TAB1           GR2 CONTAINS THE NUMBER OF ENTRIES IN TAB1
+         LA 1,0             GR1 = 0
+         L 4,=F'0'          MAX = 0
+         L 5,=F'2147483647' MIN = 2^31 - 1
+LOOP     A 1,=F'4'
+         L 3,TAB1(1)        USING INDEXING ACCESS NEXT TAB ENTRIES
+MAX      CR 3,4             COMPARE GR3 AND GR4
+         BNH MIN            BRANCH TO MIN IF NOT HIGHER
+         LR 4,3             MAX = TAB1(INDEX)
+MIN      CR 3,5             COMPARE GR3 AND GR4
+         BNL NEXT           BRANCH TO NEXT IF NOT LOWER
+         LR 5,3             MIN = TAB1(INDEX)
+NEXT     S 2,=F'1'          GR2 = GR2 - 1
+         BNZ LOOP           RETURN TO LOOP
+*
+OUTPUT   CONVERTO 4,STR1_V
+         PRINTOUT STR1,HEADER=NO
+         CONVERTO 5,STR2_V
+         PRINTOUT STR2,HEADER=NO
+         PRINTOUT *,Header=NO     ; terminate quietly
+*
+TAB1     DC F'5,10,11,2,31,80'
+STR1     DC 0CL18
+         DC C'MAX = '
+STR1_V   DC CL12'            '
+STR2     DC 0CL18
+         DC C'MIN = '
+STR2_V   DC CL12'            '
+         END HW4

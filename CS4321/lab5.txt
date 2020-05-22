@@ -1,0 +1,81 @@
+**********************************************************************
+* A PROGRAM TO DISPLAY A SORTED AND UNSORTED ARRAY AFTER SORTING     *
+*                                                                    *
+**********************************************************************
+         TITLE 'Author: Nathan Clayton Version 3/10/20'
+HW5      START 0
+         PRINT NOGEN        BOILER PLATE
+         BASR 15,0          ESTABLISH A BASE REGISTER
+         USING *,15         INFORM THE ASSEMBLER
+************************************************
+* PRINT THE SORTED ARRAY
+************************************************
+BEGIN    L 2,COUNT          GR2 CONTAINS THE NUMBER OF ENTRIES IN TAB
+         LA 1,0             GR1 = 0
+         LA 5,UNSORT        GR5 = ADDRESS OF UNSORTED
+         LA 6,STR           GR6 = ADDRESS OF STR
+PRUNSRT  L 3,TAB(1)         USING INDEXING ACCESS NEXT TAB ENTRIES
+         CONVERTO 3,STR     PUT THE ENTRY INTO STR
+         MVC 10(3,5),9(6)   GET LAST 3 BYTES OF STR AND PUT INTO UNSORT
+         LA 5,4(0,5)        INCREMENT GR5 BY 4
+         A 1,=F'4'          INCREMENT GR1 BY 4
+         S 2,=F'1'          GR2 = GR2 - 1
+         BNZ PRUNSRT
+         PRINTLIN UNSORT,LEN
+*******************************************
+* SELECTION SORT (SORT TAB)
+*******************************************
+         LA 1,0
+         L 2,COUNT
+OUTER    L 3,TAB(1)         USING INDEXING ACCESS NEXT TAB ENTRIES
+         LR 8,3             MAX = TAB[I]
+         LR 9,1             INDEX ACCESSING INNER LOOP
+         LR 11,9            MAXI = J
+         LR 4,2             J = I - 1
+         S 4,=F'1'
+         BZ SKIP
+INNER    A 9,=F'4'
+         L 10,TAB(9)        USING INDEXING ACCESS NEXT TAB ENTRIES
+         CR 8,10            compare max to tab[i]
+         BH NEXT            if max < temp branch MAXL
+         LR 8,10            MAX = TAB[J]
+         LR 11,9            MAXI = J
+NEXT     S 4,=F'1'
+         BNZ INNER
+         CR 11,1            CHECK IF IN PROPER POSITIONS
+         BZ SKIP
+         ST 3,TAB(11)       SWAP TAB[I]
+         ST 8,TAB(1)          AND TAB[MAXI]
+SKIP     LA 5,4(0,5)        INCREMENT GR5 BY 4
+         A 1,=F'4'          INCREMENT GR1 BY 4
+         S 2,=F'1'          GR2 = GR2 - 1
+         BNZ OUTER
+         L 2,COUNT          GR2 CONTAINS THE NUMBER OF ENTRIES IN TAB
+         LA 1,0             GR1 = 0
+         LA 5,SORT          GR5 = ADDRESS OF UORTED
+         LA 6,STR           GR6 = ADDRESS OF STR
+************************************************
+* PRINT THE SORTED ARRAY
+************************************************
+PRSRT    L 3,TAB(1)         USING INDEXING ACCESS NEXT TAB ENTRIES
+         CONVERTO 3,STR     PUT THE ENTRY INTO STR
+         MVC 10(3,5),9(6)   GET LAST 3 BYTES OF STR AND PUT INTO UNSORT
+         LA 5,4(0,5)        INCREMENT GR5 BY 4
+         A 1,=F'4'          INCREMENT GR1 BY 4
+         S 2,=F'1'          GR2 = GR2 - 1
+         BNZ PRSRT
+         PRINTLIN SORT,SLEN
+         PRINTOUT *,HEADER=NO
+***********************************************
+* VARIABLES
+***********************************************
+COUNT    DC F'10'
+TAB      DC F'80,10,7,22,33,89,22,48,75,99'
+STR      DC CL12' '
+*        BEGIN AT WORD BOUNDARY
+         CNOP 0,4
+SORT     DC CL80' SORTED'
+SLEN     EQU *-SORT
+UNSORT   DC CL80' UNSORTED'
+LEN      EQU *-UNSORT
+         END HW5
