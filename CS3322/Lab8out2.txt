@@ -1,0 +1,10 @@
+ 
+ 
+                              EMPLOYEE SUMMARY REPORT     11/19/2018  PAGE 01
+                    TERRITORY           TOTAL NO. OF EMPLOYEES
+ 
+                       01                   3
+                       02                   4
+                       03                   1
+                              TOTAL NO. OF EMPLOYEES       8 *
+

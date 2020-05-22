@@ -1,0 +1,9 @@
+                              M O D E L  R E P O R T        PAGE 01   10/24/2018
+          NAME                   SEX    WEIGHT  HEIGHT  EYE COLOR  HAIR COLOR
+ 
+          CHAVEZ, RITA            F      115      64      BROWN      BROWN
+          CAREY, PAUL             M      195      74      BLUE       BLONDE
+          HACKETT, BUD            M      190      73      BLUE       BLONDE
+          JONAS, SHEILA           F      120      64      BROWN      BROWN
+          CHAMBLIS, LISA          F      115      62      BROWN      BROWN
+

@@ -1,0 +1,164 @@
+      ******************************************************************
+      * A SIMPLE COBOL PROGRAM TO PRATICE TABLES
+      * SOURCE CODE: CS332205.COBOL(ASSIGN07)
+      * JCL: C332205.JCL(ASSIGN07)
+      ******************************************************************
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. ASSIGN07.
+       AUTHOR. NATHAN CLAYTON.
+       INSTALLATION. WTAMU.
+       DATE-WRITTEN. 11/10/2018.
+       DATE-COMPILED.
+       SECURITY. CONFIDENTIAL.
+      *
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SOURCE-COMPUTER. BUFFALO-THUNDER.
+       OBJECT-COMPUTER. BUFFALO-THUNDER.
+       INPUT-OUTPUT SECTION.
+      *FILE-CONTROL DEFINES OUR INPUT/OUTPUT FILES IN THE PROGRAM
+       FILE-CONTROL.
+           SELECT REG-TABLE-MASTER ASSIGN TO ATAB07IN
+               ORGANIZATION IS SEQUENTIAL.
+           SELECT REG-TRANS-MASTER ASSIGN TO AS07IN
+               ORGANIZATION IS SEQUENTIAL.
+           SELECT REG-REPORT-MASTER ASSIGN TO AS07OUT
+               ORGANIZATION IS SEQUENTIAL.
+      *
+       DATA DIVISION.
+      *FILE SECTION AND FD DEFINES THE RECORDS FOR OUR INPUT/OUTPUT
+       FILE SECTION.
+       FD REG-TABLE-MASTER
+           RECORDING MODE IS F
+           RECORD CONTAINS 80 CHARACTERS.
+       01 REG-TABLE-IN.
+           05 VEHICLE-CLASS-IN          PIC XX.
+           05 REG-RATE-IN               PIC 9V99.
+       FD REG-TRANS-MASTER
+           RECORDING MODE IS F
+           RECORD CONTAINS 80 CHARACTERS.
+       01 REG-TRANS-IN.
+           05 TRANS-V-CLASS-IN          PIC XX.
+           05 TRANS-NAME-IN             PIC X(20).
+           05 TRANS-WEIGHT-IN           PIC 9(5).
+           05 TRANS-DESC-IN             PIC X(13).
+       FD REG-REPORT-MASTER
+           RECORDING MODE IS F
+           RECORD CONTAINS 80 CHARACTERS.
+       01 REG-REPORT-OUTPUT             PIC X(80).
+
+      *WORKING STORAGE DEFINES DATA NEEDED FOR THE PROGRAM
+       WORKING-STORAGE SECTION.
+       01 ARE-THERE-MORE-RECORDS        PIC X(3) VALUE "YES".
+       01 WS-DATE.
+           05 WS-YR                     PIC 9999.
+           05 WS-MONTH                  PIC 99.
+           05 WS-DAY                    PIC 99.
+       01 REGISTRATION-TABLE.
+           05 REGISTRATION-ENTRY OCCURS 90 TIMES INDEXED BY X1.
+                10 REG-TABLE-CLASS      PIC XX.
+                10 REG-TABLE-RATE       PIC 9V99.
+       01 REG-REPORT-DATA.
+           05 FILLER                    PIC X(7) VALUE SPACES.
+           05 CLASS-OUT                 PIC XX.
+           05 FILLER                    PIC X(7) VALUE SPACES.
+           05 NAME-OUT                  PIC X(24).
+           05 WEIGHT-OUT                PIC 9(5).
+           05 FILLER                    PIC X(6) VALUE "     $".
+           05 FEE-OUT                   PIC ZZ,ZZZ.99.
+           05 FILLER                    PIC X(20) VALUE SPACES.
+
+       01 HEADER-LINE1.
+           05 FILLER                    PIC X(20) VALUE SPACES.
+           05 HEADER                    PIC X(21)
+                VALUE "REGISTRATION REPORT ".
+           05 DATE-OUT.
+                10 HEAD-MONTH           PIC XX.
+                10 FILLER               PIC X VALUE "/".
+                10 HEAD-DAY             PIC XX.
+                10 FILLER               PIC X VALUE "/".
+                10 HEAD-YEAR            PIC XXXX.
+           05 FILLER                    PIC X(8) VALUE "   PAGE ".
+           05 PAGE-OUT                  PIC 99 VALUE 1.
+           05 FILLER                    PIC X(19) VALUE SPACES.
+       01 HEADER-LINE2.
+           05 VCLASS    PIC X(17) VALUE "  VEHICLE CLASS  ".
+           05 HNAME     PIC X(4) VALUE "NAME".
+           05 FILLER    PIC X(19) VALUE SPACES.
+           05 VWEIGHT   PIC X(11) VALUE "WEIGHT    ".
+           05 HFEE      PIC XXX VALUE "FEE".
+           05 FILLER    PIC X(26) VALUE SPACES.
+      *
+       PROCEDURE DIVISION.
+       100-MAIN-MODULE.
+           PERFORM 500-GET-DATE-DATA.
+           OPEN INPUT REG-TABLE-MASTER
+           OPEN INPUT REG-TRANS-MASTER
+           OPEN OUTPUT REG-REPORT-MASTER
+           PERFORM 300-PRINT-HEADER
+           PERFORM 200-LOAD-REG-TABLE VARYING X1 FROM 1 BY 1 UNTIL
+                X1 > 90 OR ARE-THERE-MORE-RECORDS = "NO "
+           PERFORM 400-PROCESS-REG-TRANS
+           CLOSE REG-REPORT-MASTER
+           CLOSE REG-TRANS-MASTER
+           CLOSE REG-TABLE-MASTER
+           STOP RUN.
+      *LOADS THE DATA FROM REG-TABLE-MASTER INTO REGISTRATION TABLE
+       200-LOAD-REG-TABLE.
+           READ REG-TABLE-MASTER
+                AT END
+                    MOVE "NO " TO ARE-THERE-MORE-RECORDS
+                NOT AT END
+                    MOVE VEHICLE-CLASS-IN TO REG-TABLE-CLASS(X1)
+                    MOVE REG-RATE-IN TO REG-TABLE-RATE(X1)
+           END-READ.
+      *PRINT HEADER FOR THE REGISTRATION REPORT
+       300-PRINT-HEADER.
+           MOVE SPACES TO REG-REPORT-OUTPUT
+           WRITE REG-REPORT-OUTPUT
+           MOVE SPACES TO REG-REPORT-OUTPUT
+           WRITE REG-REPORT-OUTPUT
+           MOVE HEADER-LINE1 TO REG-REPORT-OUTPUT
+           WRITE REG-REPORT-OUTPUT
+           MOVE HEADER-LINE2 TO REG-REPORT-OUTPUT
+           WRITE REG-REPORT-OUTPUT
+           MOVE SPACES TO REG-REPORT-OUTPUT
+           WRITE REG-REPORT-OUTPUT.
+      *PROCESS THE DATA FROM REGISTRATION TRANS FOR OUTPUT
+       400-PROCESS-REG-TRANS.
+           MOVE "YES" TO ARE-THERE-MORE-RECORDS
+           PERFORM UNTIL ARE-THERE-MORE-RECORDS = "NO "
+                READ REG-TRANS-MASTER
+                  AT END
+                      MOVE 'NO ' TO ARE-THERE-MORE-RECORDS
+                  NOT AT END
+                      MOVE TRANS-V-CLASS-IN TO CLASS-OUT
+                      MOVE TRANS-NAME-IN TO NAME-OUT
+                      MOVE TRANS-WEIGHT-IN TO WEIGHT-OUT
+                      PERFORM 700-SEARCH-FOR-MATCH
+                      MOVE REG-REPORT-DATA TO REG-REPORT-OUTPUT
+                      WRITE REG-REPORT-OUTPUT
+                END-READ
+           END-PERFORM.
+      *GET CURRENT DATE AND STORE TO OUTPUT RECORD
+       500-GET-DATE-DATA.
+           MOVE FUNCTION CURRENT-DATE TO WS-DATE
+           MOVE WS-YR OF WS-DATE TO HEAD-YEAR OF DATE-OUT
+           OF HEADER-LINE1
+           MOVE WS-MONTH OF WS-DATE TO HEAD-MONTH OF DATE-OUT
+           OF HEADER-LINE1
+           MOVE WS-DAY TO HEAD-DAY OF DATE-OUT
+           OF HEADER-LINE1.
+      *CALCULATE REGISTRATION FEE FOR EACH REG-TRANS
+       600-CALCULATE-REG-FEE.
+           MULTIPLY TRANS-WEIGHT-IN BY REG-TABLE-RATE(X1)
+                GIVING FEE-OUT.
+      *SEARCH THROUGH REGISTRATION TABLE LOOKING FOR MATCH
+       700-SEARCH-FOR-MATCH.
+           SET X1 TO 1
+           SEARCH REGISTRATION-ENTRY
+                WHEN REG-TABLE-CLASS(X1) IS EQUAL TO TRANS-V-CLASS-IN
+                    PERFORM 600-CALCULATE-REG-FEE
+           END-SEARCH.
+
+

@@ -1,0 +1,121 @@
+      ******************************************************************
+      * A SIMPLE COBOL PROGRAM TO READ JCL IN-STREAM DATA
+      * USING MERGE SORT FUNCTIONALITY
+      * SOURCE CODE: CS332205.COBOL(ASSIGN10)
+      * JCL: C332205.JCL(ASSIGN10)
+      ******************************************************************
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. ASSIGN10.
+       AUTHOR. NATHAN CLAYTON.
+       INSTALLATION. WTAMU.
+       DATE-WRITTEN. 12/05/2018.
+       DATE-COMPILED.
+       SECURITY. CONFIDENTIAL.
+      *
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SOURCE-COMPUTER. BUFFALO-THUNDER.
+       OBJECT-COMPUTER. BUFFALO-THUNDER.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT PLANTA-MASTER ASSIGN TO AS10INA
+               ORGANIZATION IS SEQUENTIAL.
+           SELECT PLANTB-MASTER ASSIGN TO AS10INB
+               ORGANIZATION IS SEQUENTIAL.
+           SELECT MERGED-MASTER ASSIGN TO AS10OUTA
+               ORGANIZATION IS SEQUENTIAL.
+           SELECT DUPLICATE-REPORT ASSIGN TO AS10OUTB
+               ORGANIZATION IS SEQUENTIAL.
+           SELECT MERGE-FILE ASSIGN TO SORT10IN.
+      *
+       DATA DIVISION.
+       FILE SECTION.
+
+      *INPUT FILES
+
+       FD PLANTA-MASTER
+           RECORDING MODE IS F
+           RECORD CONTAINS 80 CHARACTERS.
+       01 PLANTA-REC.
+           05 A-SSN-NO              PIC X(9).
+           05 A-EMP-NAME            PIC X(20).
+           05 A-FILLER              PIC X(51).
+
+       FD PLANTB-MASTER
+           RECORDING MODE IS F
+           RECORD CONTAINS 80 CHARACTERS.
+       01 PLANTB-REC.
+           05 B-SSN-NO              PIC X(9).
+           05 B-EMP-NAME            PIC X(20).
+           05 B-FILLER              PIC X(51).
+
+      *WORKING MERGE FILES
+
+       SD MERGE-FILE
+           RECORD CONTAINS 80 CHARACTERS.
+       01 MERGE-REC.
+           05 MERGE-SSN             PIC X(9).
+           05 MERGE-EMP-NAME        PIC X(20).
+           05 MERGE-FILLER          PIC X(51).
+
+      *OUTPUT FILES
+
+       FD MERGED-MASTER
+           RECORDING MODE IS F
+           RECORD CONTAINS 80 CHARACTERS.
+       01 MERGED-RECORD             PIC X(80).
+
+       FD DUPLICATE-REPORT
+           RECORDING MODE IS F
+           RECORD CONTAINS 80 CHARACTERS.
+       01 DUPLICATE-RECORD          PIC X(80).
+
+
+       WORKING-STORAGE SECTION.
+       01 ARE-THERE-MORE-RECORDS  PIC X(3) VALUE "YES".
+       01 LAST-SSN                PIC X(9) VALUE SPACES.
+
+       01 DUPLICATE-HEADER.
+           05 FILLER              PIC X(20) VALUE SPACES.
+           05 HEAD-LINE           PIC X(60) VALUE "DUPLICATES".
+
+
+
+      *
+       PROCEDURE DIVISION.
+       100-MAIN-MODULE.
+           OPEN OUTPUT MERGED-MASTER
+           OPEN OUTPUT DUPLICATE-REPORT
+           PERFORM 300-PRINT-DUP-HEADER
+           MERGE MERGE-FILE ON ASCENDING KEY MERGE-SSN
+                USING PLANTA-MASTER
+                      PLANTB-MASTER
+                OUTPUT PROCEDURE 200-PROCESS-DATA
+           CLOSE DUPLICATE-REPORT
+           CLOSE MERGED-MASTER
+           STOP RUN.
+
+       200-PROCESS-DATA.
+           PERFORM UNTIL ARE-THERE-MORE-RECORDS = "NO "
+                RETURN MERGE-FILE
+                    AT END
+                        MOVE "NO " TO ARE-THERE-MORE-RECORDS
+                    NOT AT END
+                        PERFORM 400-DUPLICATE-CHECK
+                END-RETURN
+           END-PERFORM.
+
+       300-PRINT-DUP-HEADER.
+           WRITE DUPLICATE-RECORD FROM DUPLICATE-HEADER.
+
+       400-DUPLICATE-CHECK.
+           IF MERGE-SSN IS EQUAL TO LAST-SSN
+                MOVE SPACES TO MERGE-FILLER
+                WRITE DUPLICATE-RECORD FROM MERGE-EMP-NAME
+           ELSE
+                MOVE SPACES TO MERGE-FILLER
+                WRITE MERGED-RECORD FROM MERGE-REC
+           END-IF
+           MOVE MERGE-SSN TO LAST-SSN.
+
+

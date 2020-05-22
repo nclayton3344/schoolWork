@@ -1,0 +1,17 @@
+ 
+ 
+                    REGISTRATION REPORT  11/10/2018   PAGE 01
+  VEHICLE CLASS  NAME                   WEIGHT     FEE
+ 
+       A1       ALLAN                   03750     $ 1,687.50
+       A1       BAKKER                  02500     $ 1,125.00
+       A3       CARDWELL                03450     $ 2,587.50
+       A1       DORSEY                  03000     $ 1,350.00
+       B1       NOLAN                   02950     $ 2,950.00
+       B3       REDFORD                 04600     $ 5,060.00
+       C3       JOHNSON                 04500     $ 3,375.00
+       A2       MARSHALL                03432     $ 2,230.80
+       D3       SEAGRAM                 03980     $ 4,378.00
+       X2       SIMON                   03999     $ 3,839.04
+       M6       MACK                    17300     $11,591.00
+

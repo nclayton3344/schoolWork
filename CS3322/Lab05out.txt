@@ -1,0 +1,44 @@
+    I N F L A T I O N   R E P O R T            10/29/2018              PAGE   1
+    ITEM NUMBER: 12345
+    ITEM DESCRIPTION:  3 1/2 DISKETTE
+    ITEM COST:     $1.00
+                           YEAR     INFLATION RATE     ITEM COST WITH INFLATION
+                             1            08%                       1.08
+                             2            08%                       1.17
+                             3            08%                       1.26
+                             3            08%                       1.26
+                             5            08%                       1.47
+                             6            06%                       1.56
+                             7            06%                       1.65
+                             8            06%                       1.75
+                             9            06%                       1.85
+                            10            06%                       1.97
+    ITEM NUMBER: 36688
+    ITEM DESCRIPTION:  RAKE
+    ITEM COST:    $12.99
+                           YEAR     INFLATION RATE     ITEM COST WITH INFLATION
+                             1            08%                      14.03
+                             2            08%                      15.15
+                             3            08%                      16.36
+                             4            08%                      17.67
+                             5            08%                      19.09
+                             6            06%                      20.23
+                             7            06%                      21.45
+                             8            06%                      22.73
+                             9            06%                      24.10
+                            10            06%                      25.54
+    I N F L A T I O N   R E P O R T            10/29/2018              PAGE   2
+    ITEM NUMBER: 77788
+    ITEM DESCRIPTION:  FILING CABINET
+    ITEM COST:    $89.99
+                           YEAR     INFLATION RATE     ITEM COST WITH INFLATION
+                             1            08%                      97.19
+                             2            08%                     104.96
+                             3            08%                     113.36
+                             4            08%                     122.43
+                             5            08%                     132.22
+                             6            06%                     140.16
+                             7            06%                     148.57
+                             8            06%                     157.48
+                             9            06%                     166.93
+                            10            06%                     176.95

@@ -1,0 +1,190 @@
+      ******************************************************************
+      * A SIMPLE COBOL PROGRAM TO READ JCL IN-STREAM DATA
+      * USING SORT FUNCTIONALITY
+      * SOURCE CODE: CS332205.COBOL(ASSIGN08)
+      * JCL: C332205.JCL(ASSIGN08)
+      ******************************************************************
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. ASSIGN08.
+       AUTHOR. NATHAN CLAYTON.
+       INSTALLATION. WTAMU.
+       DATE-WRITTEN. 11/17/2018.
+       DATE-COMPILED.
+       SECURITY. CONFIDENTIAL.
+      *
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SOURCE-COMPUTER. BUFFALO-THUNDER.
+       OBJECT-COMPUTER. BUFFALO-THUNDER.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT PAYROLL-MASTER ASSIGN TO AS08IN
+               ORGANIZATION IS SEQUENTIAL.
+           SELECT SUMMARY-REPORT ASSIGN TO AS08OUT2
+               ORGANIZATION IS SEQUENTIAL.
+           SELECT SORTED-REPORT ASSIGN TO AS08OUT1
+               ORGANIZATION IS SEQUENTIAL.
+           SELECT SORT-FILE-MASTER ASSIGN TO SORT08IN.
+      *
+       DATA DIVISION.
+       FILE SECTION.
+
+       FD PAYROLL-MASTER
+           RECORDING MODE IS F
+           RECORD CONTAINS 80 CHARACTERS.
+       01 PAYROLL-MASTER-IN       PIC X(80).
+
+       SD SORT-FILE-MASTER
+           RECORD CONTAINS 80 CHARACTERS.
+       01 SORT-FILE-REC.
+           05 EMP-NO-IN           PIC X(5).
+           05 EMP-NAME-IN         PIC X(20).
+           05 EMP-TER-IN          PIC 9(2).
+           05 EMP-OFFICENO-IN     PIC 9(2).
+           05 EMP-SAL-IN          PIC 9(6).
+           05 FILLER              PIC X(45).
+
+       FD SUMMARY-REPORT
+           RECORDING MODE IS F
+           RECORD CONTAINS 80 CHARACTERS.
+       01 SUMMARY-REPORT-OUT      PIC X(80).
+
+       FD SORTED-REPORT
+           RECORDING MODE IS F
+           RECORD CONTAINS 80 CHARACTERS.
+       01 SORTED-RECORD-OUT.
+           05 EMP-NO-OUT          PIC X(5).
+           05 EMP-NAME-OUT        PIC X(20).
+           05 EMP-TER-OUT         PIC 9(2).
+           05 EMP-OFFICENO-OUT    PIC 9(2).
+           05 EMP-SAL-OUT         PIC 9(6).
+           05 FILLER              PIC X(45).
+
+       WORKING-STORAGE SECTION.
+       01 ARE-THERE-MORE-RECORDS  PIC X(3) VALUE "YES".
+       01 TERRITORY-COUNTER       PIC 99 VALUE 0.
+       01 EMP-COUNTER             PIC 99 VALUE 0.
+       01 PAGES-COUNT             PIC 99 VALUE 0.
+       01 LINES-COUNT             PIC 99 VALUE 0.
+       01 TEMP-TER                PIC 99.
+
+       01 STORED-DATE.
+           05 STORED-YEAR         PIC 9(4).
+           05 STORED-MONTH        PIC 9(2).
+           05 STORED-DAY          PIC 9(2).
+
+       01 SUMMARY-LINE1.
+           05 FILLER              PIC X(30) VALUE SPACES.
+           05 TITLE-HEAD          PIC X(28)
+                VALUE "EMPLOYEE SUMMARY REPORT     ".
+           05 MONTH               PIC 99.
+           05 SLASH               PIC X VALUE "/".
+           05 DAY1                PIC 99.
+           05 SLASH               PIC X VALUE "/".
+           05 YEAR                PIC 9999.
+           05 FILLER              PIC X(2) VALUE SPACES.
+           05 FILLER              PIC X(5) VALUE "PAGE ".
+           05 PG-COUNT            PIC 9(2) VALUE 01.
+           05 FILLER              PIC X(3) VALUE SPACES.
+
+       01 SUMMARY-LINE2.
+           05 FILLER              PIC X(20) VALUE SPACES.
+           05 TERRITORY           PIC X(20) VALUE "TERRITORY".
+           05 NUM-EMP             PIC X(40)
+                VALUE "TOTAL NO. OF EMPLOYEES".
+
+       01 SUMMARY-DATA-LINE.
+           05 FILLER              PIC X(23) VALUE SPACES.
+           05 SUM-TER             PIC 9(2).
+           05 FILLER              PIC X(15) VALUE SPACES.
+           05 SUM-TER-TOT         PIC Z,ZZ9.
+           05 FILLER              PIC X(35) VALUE SPACES.
+
+       01 SUMMARY-FOOTER.
+           05 FILLER              PIC X(30) VALUE SPACES.
+           05 FILLER              PIC X(24)
+                VALUE "TOTAL NO. OF EMPLOYEES  ".
+           05 SUM-EMP-TOT         PIC ZZ,ZZZ.
+           05 FILLER              PIC X(20) VALUE " *".
+
+      *
+       PROCEDURE DIVISION.
+       100-MAIN-MODULE.
+           OPEN OUTPUT SORTED-REPORT
+           OPEN OUTPUT SUMMARY-REPORT
+           PERFORM 200-GET-CURRENT-DATE
+           PERFORM 400-PRINT-HEADER
+           SORT SORT-FILE-MASTER ON ASCENDING KEY EMP-TER-IN
+                USING PAYROLL-MASTER
+                OUTPUT PROCEDURE 300-PROCESS-DATA
+           PERFORM 800-PRINT-FOOTER
+           CLOSE SORTED-REPORT
+           CLOSE SUMMARY-REPORT
+           STOP RUN.
+
+       200-GET-CURRENT-DATE.
+           MOVE FUNCTION CURRENT-DATE TO STORED-DATE.
+           MOVE STORED-YEAR TO YEAR
+           MOVE STORED-MONTH TO MONTH
+           MOVE STORED-DAY TO DAY1.
+
+       300-PROCESS-DATA.
+           MOVE "YES" TO ARE-THERE-MORE-RECORDS
+           MOVE 1 TO TERRITORY-COUNTER
+           PERFORM 500-COUNT-BY-TERRITORIES
+           MOVE EMP-TER-IN TO TEMP-TER
+           PERFORM 600-PRINT-SORTED-OUTPUT
+                UNTIL ARE-THERE-MORE-RECORDS = "NO ".
+
+       400-PRINT-HEADER.
+           ADD 1 TO PAGES-COUNT
+           MOVE PAGES-COUNT TO PG-COUNT
+           MOVE SPACES TO SUMMARY-REPORT-OUT
+           WRITE SUMMARY-REPORT-OUT
+           WRITE SUMMARY-REPORT-OUT
+           MOVE SUMMARY-LINE1 TO SUMMARY-REPORT-OUT
+           WRITE SUMMARY-REPORT-OUT
+           MOVE SUMMARY-LINE2 TO SUMMARY-REPORT-OUT
+           WRITE SUMMARY-REPORT-OUT
+           MOVE SPACES TO SUMMARY-REPORT-OUT
+           WRITE SUMMARY-REPORT-OUT
+           ADD 5 TO LINES-COUNT.
+
+       500-COUNT-BY-TERRITORIES.
+           RETURN SORT-FILE-MASTER
+                AT END MOVE "NO " TO ARE-THERE-MORE-RECORDS
+                NOT AT END
+                    IF EMP-TER-IN = TEMP-TER
+                        ADD 1 TO TERRITORY-COUNTER
+                        ADD 1 TO EMP-COUNTER
+                    ELSE
+                        ADD 1 TO EMP-COUNTER
+                    END-IF
+           END-RETURN.
+
+       600-PRINT-SORTED-OUTPUT.
+           IF EMP-TER-IN IS NOT EQUAL TO TEMP-TER
+                PERFORM 700-PRINT-SUMMARY-DATA
+           END-IF
+           MOVE SORT-FILE-REC TO SORTED-RECORD-OUT
+           WRITE SORTED-RECORD-OUT
+           PERFORM 500-COUNT-BY-TERRITORIES
+           IF ARE-THERE-MORE-RECORDS = "NO "
+                PERFORM 700-PRINT-SUMMARY-DATA
+           END-IF.
+
+       700-PRINT-SUMMARY-DATA.
+           MOVE TEMP-TER TO SUM-TER
+           MOVE EMP-TER-IN TO TEMP-TER
+           MOVE TERRITORY-COUNTER TO SUM-TER-TOT
+           MOVE SUMMARY-DATA-LINE TO SUMMARY-REPORT-OUT
+           WRITE SUMMARY-REPORT-OUT
+           MOVE 1 TO TERRITORY-COUNTER
+           ADD 1 TO LINES-COUNT
+           IF LINES-COUNT > 50  AND ARE-THERE-MORE-RECORDS = "YES"
+               PERFORM 400-PRINT-HEADER
+           END-IF.
+       800-PRINT-FOOTER.
+           MOVE EMP-COUNTER TO SUM-EMP-TOT
+           MOVE SUMMARY-FOOTER TO SUMMARY-REPORT-OUT
+           WRITE SUMMARY-REPORT-OUT.

@@ -1,0 +1,53 @@
+      ******************************************************************
+      * A SIMPLE COBOL PROGRAM TO READ JCL IN-STREAM DATA
+      * USING THE ACCEPT COMMAND AND
+      * WRITE OUTPUT TO JCL OUTSTREAM
+      * USING THE DISPLAY COMMAND
+      * SOURCE CODE: CS332205.COBOL(ASSIGN02)
+      * JCL: C332205.JCL(ASSIGN02)
+      ******************************************************************
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. ASSIGN02.
+       AUTHOR. NATHAN CLAYTON.
+       INSTALLATION. WTAMU.
+       DATE-WRITTEN. 10/09/2018.
+       DATE-COMPILED.
+       SECURITY. CONFIDENTIAL.
+      *
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SOURCE-COMPUTER. BUFFALO-THUNDER.
+       OBJECT-COMPUTER. BUFFALO-THUNDER.
+      *
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 SYSIN-DATA.
+           05 CUST-ID-IN            PIC X(5).
+           05 AMT-1              PIC 9(3)V99.
+           05 AMT-2              PIC 9(3)V99.
+           05 AMT-3              PIC 9(3)V99.
+           05 FILLER             PIC X(60).
+       01 SYSOUT-DATA.
+           05 CUST-ID-OUT        PIC X(5).
+           05 SUM-TOTAL          PIC $$,$$9.99.
+           05 FILLER             PIC X(66).
+       01 ARE-THERE-MORE-RECORDS PIC X(3) VALUE "YES".
+      *
+       PROCEDURE DIVISION.
+      *
+       000-CALCULATE-TOTAL.
+           PERFORM 100-COMPUTE-TOTAL
+           STOP RUN.
+      *
+       100-COMPUTE-TOTAL.
+           PERFORM UNTIL ARE-THERE-MORE-RECORDS = 'NO '
+                ACCEPT SYSIN-DATA FROM SYSIN
+                IF SYSIN-DATA(1:2) = "**"
+                    MOVE 'NO ' TO ARE-THERE-MORE-RECORDS
+                ELSE
+                    MOVE CUST-ID-IN TO CUST-ID-OUT
+                    COMPUTE SUM-TOTAL = AMT-1 + AMT-2 + AMT-3
+                    DISPLAY SYSOUT-DATA
+                END-IF
+           END-PERFORM.
+

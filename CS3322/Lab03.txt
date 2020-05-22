@@ -1,0 +1,142 @@
+      ******************************************************************
+      * A SIMPLE COBOL PROGRAM TO READ JCL IN-STREAM DATA
+      * USING THE ACCEPT COMMAND AND
+      * WRITE OUTPUT TO JCL OUTSTREAM
+      * USING THE DISPLAY COMMAND
+      * SOURCE CODE: CS332205.COBOL(ASSIGN03)
+      * JCL: C332205.JCL(ASSIGN03)
+      ******************************************************************
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. ASSIGN03.
+       AUTHOR. NATHAN CLAYTON.
+       INSTALLATION. WTAMU.
+       DATE-WRITTEN. 10/17/2018.
+       DATE-COMPILED.
+       SECURITY. CONFIDENTIAL.
+      *
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SOURCE-COMPUTER. BUFFALO-THUNDER.
+       OBJECT-COMPUTER. BUFFALO-THUNDER.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT PAYROLL-MASTER ASSIGN TO AS03IN
+               ORGANIZATION IS SEQUENTIAL.
+           SELECT PAYROLL-REPORT ASSIGN TO AS03OUT
+               ORGANIZATION IS SEQUENTIAL.
+      *
+       DATA DIVISION.
+       FILE SECTION.
+       FD PAYROLL-MASTER
+           RECORDING MODE IS F
+           RECORD CONTAINS 80 CHARACTERS.
+       01 PAYROLL-MASTER-IN.
+           05 EMP-ID-IN          PIC X(5).
+           05 EMP-NAME-IN        PIC X(20).
+           05 FILLER             PIC X(4).
+           05 SALARY-IN          PIC 9(6).
+           05 FILLER             PIC X(13).
+           05 DUES-IN            PIC 9(3)V99.
+           05 INSURANCE-IN       PIC 9(3)V99.
+           05                    PIC X(22).
+       FD PAYROLL-REPORT
+           RECORDING MODE IS F
+           RECORD CONTAINS 80 CHARACTERS.
+       01 PAYROLL-REPORT-OUT     PIC X(80).
+       WORKING-STORAGE SECTION.
+       01 ARE-THERE-MORE-RECORDS PIC X(3) VALUE "YES".
+       01 COUNTER1          PIC 999 VALUE 0.
+       01 TEMP-SAL          PIC 9999999V99.
+       01 RECORD-OUT.
+           05 PIC X(3) VALUE SPACES.
+           05 EMP-ID-OUT         PIC X(7).
+           05 PIC X(2) VALUE SPACES.
+           05 EMP-NAME-OUT       PIC X(22).
+           05 OLD-SALARY-OUT     PIC ZZZZZ9.
+           05 PIC X VALUE SPACE.
+           05 NEW-SALARY-OUT     PIC ZZZZZZ9.
+           05 PIC XX VALUE SPACES.
+           05 OLD-DUES           PIC ZZZ.99.
+           05 PIC X VALUE SPACE.
+           05 NEW-DUES-OUT       PIC ZZZZ.99.
+           05 PIC XX VALUE SPACES.
+           05 OLD-INS-OUT        PIC Z(3).99.
+           05 PIC X VALUE SPACE.
+           05 NEW-INS-OUT        PIC Z(4).99.
+       01 STORED-DATE.
+           05 STORED-YEAR   PIC 9(4).
+           05 STORED-MONTH  PIC 9(2).
+           05 STORED-DAY    PIC 9(2).
+       01 HEADER-LINE1.
+           05 PIC X(31) VALUE SPACES.
+           05 TITLE-HEAD PIC X(35) VALUE "PAYROLL  REPORT".
+           05 MONTH PIC 99.
+           05 SLASH PIC X VALUE "/".
+           05 DAY1 PIC 99.
+           05 SLASH PIC X VALUE "/".
+           05 YEAR PIC 9999.
+       01 HEADER-LINE2.
+           05 PIC X VALUE SPACE.
+           05 PIC X(17) VALUE "EMPLOYEE".
+           05 PIC X(17) VALUE "NAME".
+           05 PIC X(8) VALUE "OLD".
+           05 PIC X(8) VALUE "NEW".
+           05 PIC X(8) VALUE "OLD".
+           05 PIC X(8) VALUE "NEW".
+           05 PIC X(8) VALUE "OLD".
+           05 PIC X(7) VALUE "NEW".
+       01 HEADER-LINE3.
+           05 PIC X(4) VALUE SPACES.
+           05 PIC X(30) VALUE "NO.".
+           05 PIC X(8) VALUE "SALARY".
+           05 PIC X(9) VALUE "SALARY".
+           05 PIC X(8) VALUE "DUES".
+           05 PIC X(7) VALUE "DUES".
+           05 PIC X(8) VALUE "INSUR.".
+           05 PIC X(8) VALUE "INSUR.".
+      *
+       PROCEDURE DIVISION.
+       100-MAIN-MODULE.
+           OPEN INPUT PAYROLL-MASTER.
+           OPEN OUTPUT PAYROLL-REPORT.
+           MOVE FUNCTION CURRENT-DATE TO STORED-DATE.
+           MOVE STORED-YEAR TO YEAR
+           MOVE STORED-MONTH TO MONTH
+           MOVE STORED-DAY TO DAY1
+           PERFORM 300-PRINT-HEADER
+           PERFORM UNTIL ARE-THERE-MORE-RECORDS = "NO "
+                IF COUNTER1 IS GREATER THAN 60
+                    PERFORM 300-PRINT-HEADER
+                END-IF
+                READ PAYROLL-MASTER
+                  AT END
+                      MOVE 'NO ' TO ARE-THERE-MORE-RECORDS
+                  NOT AT END
+                      PERFORM 200-PROCESS-RECORD
+                END-READ
+                ADD 1 TO COUNTER1
+           END-PERFORM
+           CLOSE PAYROLL-MASTER
+           CLOSE PAYROLL-REPORT
+           STOP RUN.
+       200-PROCESS-RECORD.
+           MOVE EMP-ID-IN TO EMP-ID-OUT
+           MOVE EMP-NAME-IN TO EMP-NAME-OUT
+           MOVE DUES-IN TO OLD-DUES
+           MOVE SALARY-IN TO OLD-SALARY-OUT
+           MOVE INSURANCE-IN TO OLD-INS-OUT
+           COMPUTE TEMP-SAL = SALARY-IN +
+                (SALARY-IN * 0.07)
+           MOVE TEMP-SAL TO NEW-SALARY-OUT
+           COMPUTE NEW-DUES-OUT = DUES-IN + (DUES-IN * 0.04)
+           COMPUTE NEW-INS-OUT = INSURANCE-IN + (INSURANCE-IN * 0.03)
+           MOVE RECORD-OUT TO PAYROLL-REPORT-OUT
+           WRITE PAYROLL-REPORT-OUT.
+       300-PRINT-HEADER.
+           COMPUTE COUNTER1 = 0
+           WRITE PAYROLL-REPORT-OUT FROM HEADER-LINE1
+           WRITE PAYROLL-REPORT-OUT FROM HEADER-LINE2
+           WRITE PAYROLL-REPORT-OUT FROM HEADER-LINE3
+           MOVE SPACES TO PAYROLL-REPORT-OUT
+           WRITE PAYROLL-REPORT-OUT.
+

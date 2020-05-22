@@ -1,0 +1,56 @@
+      **************************************************************
+      *  THIS PROGRAM WILL READ A RECORD RANDOMLY FROM
+      *  VSAM C332200.ASSIGNX9 WHICH HAS BEEN POPULATED
+      *  BY RUNNING THE PROGRAM C332200.COBOL(ASSIGNA9).
+      *  THIS PROGRAM VERIFIES IF THE VSAM DATASET HAS POPULATED
+      *  BY C332200.COBOL(ASSIGNA9) RUN SUCESS IS TRUE
+      **************************************************************
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. ASSIGNB9.
+       AUTHOR. NATHAN CLAYTON.
+       INSTALLATION. DEPARTMENT OF ENGINEERING AND CS.
+       DATE-WRITTEN. NOVEMBER 28, 2018.
+       DATE-COMPILED.
+       SECURITY. AUTHORIZED PERSONNEL FOR IN CLASS LEARNING ONLY.
+      *
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SOURCE-COMPUTER. BUFFALO-THUNDER.
+       OBJECT-COMPUTER. BUFFALO-THUNDER.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT INPUT-VSAM ASSIGN TO INVSAM
+               ORGANIZATION IS INDEXED
+               ACCESS IS RANDOM
+               RECORD KEY IS IM-EMP-NO.
+       DATA DIVISION.
+       FILE SECTION.
+       FD INPUT-VSAM.
+          01 INPUT-REC.
+            05  IM-EMP-NO              PIC 9(3).
+            05  IM-EMP-NAME            PIC X(24).
+            05  IM-EMP-ADDRESS         PIC X(43).
+            05  FILLER                 PIC X(10) VALUE SPACE.
+       WORKING-STORAGE SECTION.
+       01 KEY-IS-VALID               PIC X(11) VALUE SPACES.
+       01 WS-INPUT-REC.
+          05  WS-EMP-NO              PIC 9(3).
+          05  WS-EMP-NAME            PIC X(24).
+          05  WS-EMP-ADDRESS         PIC X(43).
+          05  UNUSED                 PIC X(10) VALUE SPACE.
+       PROCEDURE DIVISION.
+       1000-MAIN.
+           OPEN INPUT INPUT-VSAM
+           MOVE 002 TO IM-EMP-NO
+           PERFORM UNTIL KEY-IS-VALID = "Invalid Key"
+                READ INPUT-VSAM RECORD INTO WS-INPUT-REC
+                KEY IS IM-EMP-NO
+                INVALID KEY MOVE 'Invalid Key' TO KEY-IS-VALID
+                NOT INVALID KEY
+                MOVE SPACE TO UNUSED
+                DISPLAY WS-INPUT-REC
+              END-READ
+              ADD 2 TO IM-EMP-NO
+           END-PERFORM.
+           CLOSE INPUT-VSAM
+           STOP RUN.

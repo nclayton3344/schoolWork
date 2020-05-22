@@ -1,0 +1,159 @@
+      ******************************************************************
+      * A SIMPLE COBOL PROGRAM TO READ JCL IN-STREAM DATA
+      * FROM A04IN DATASET
+      * WRITE OUTPUT TO JCL OUTSTREAM
+      * USING THE DISPLAY COMMAND
+      * SOURCE CODE: CS332205.COBOL(ASSIGN04)
+      * JCL: C332205.JCL(ASSIGN04)
+      ******************************************************************
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. ASSIGN04.
+       AUTHOR. NATHAN CLAYTON.
+       INSTALLATION. WTAMU.
+       DATE-WRITTEN. 10/22/2018.
+       DATE-COMPILED.
+       SECURITY. CONFIDENTIAL.
+      *
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SOURCE-COMPUTER. BUFFALO-THUNDER.
+       OBJECT-COMPUTER. BUFFALO-THUNDER.
+       INPUT-OUTPUT SECTION.
+      *FILE-CONTROL DEFINES OUR INPUT/OUTPUT FILES IN THE PROGRAM
+       FILE-CONTROL.
+           SELECT MODEL-MASTER ASSIGN TO AS04IN
+               ORGANIZATION IS SEQUENTIAL.
+           SELECT MODEL-REPORT ASSIGN TO AS04OUT
+               ORGANIZATION IS SEQUENTIAL.
+      *
+       DATA DIVISION.
+      *FILE SECTION AND FD DEFINES THE RECORDS FOR OUR INPUT/OUTPUT
+       FILE SECTION.
+       FD MODEL-MASTER
+           RECORDING MODE IS F
+           RECORD CONTAINS 80 CHARACTERS.
+       01 MODEL-MASTER-IN.
+           05 NAME-IN          PIC X(20).
+           05 WEIGHT-IN        PIC 999.
+           05 HEIGHT-IN        PIC 99.
+           05 EYES-IN          PIC 9.
+           05 HAIR-IN          PIC 9.
+           05 SEX-IN           PIC 9.
+       FD MODEL-REPORT
+           RECORDING MODE IS F
+           RECORD CONTAINS 80 CHARACTERS.
+       01 MODEL-REPORT-OUT     PIC X(80).
+      *WORKING STORAGE DEFINES DATA NEEDED FOR THE PROGRAM
+       WORKING-STORAGE SECTION.
+       01 ARE-THERE-MORE-RECORDS PIC X(3) VALUE "YES".
+       01 COUNTER1          PIC 99 VALUE 0.
+       01 OUTPUT-RECORD.
+           05               PIC X(10) VALUE SPACES.
+           05 NAME-OUT      PIC X(20).
+           05               PIC X(4) VALUE SPACES.
+           05 SEX-OUT       PIC X.
+           05               PIC X(6) VALUE SPACES.
+           05 WEIGHT-OUT    PIC X(9).
+           05 HEIGHT-OUT    PIC X(8).
+           05 EYES-OUT      PIC X(11).
+           05 HAIR-OUT      PIC X(11).
+       01 WS-DATE.
+           05 WS-YR         PIC 9999.
+           05 WS-MONTH      PIC 99.
+           05 WS-DAY        PIC 99.
+       01 HEADER-LINE1.
+           05            PIC X(30) VALUE SPACES.
+           05 TITLE-HEAD PIC X(30) VALUE "M O D E L  R E P O R T".
+           05 PAGE-COUNT PIC X(5) VALUE "PAGE ".
+           05 PAGE-NUM   PIC 99.
+           05 FILLER     PIC X(3) VALUE SPACES.
+           05 DATE-OUT.
+                10 HEAD-MONTH PIC XX.
+                10 FILLER     PIC X VALUE "/".
+                10 HEAD-DAY   PIC XX.
+                10 FILLER     PIC X VALUE "/".
+                10 HEAD-YEAR  PIC XXXX.
+       01 HEADER-LINE2.
+           05 PIC X(10) VALUE SPACES.
+           05 PIC X(23) VALUE "NAME".
+           05 PIC X(7) VALUE "SEX".
+           05 PIC X(8) VALUE "WEIGHT  ".
+           05 PIC X(8) VALUE "HEIGHT  ".
+           05 PIC X(11) VALUE "EYE COLOR  ".
+           05 PIC X(13) VALUE "HAIR COLOR".
+
+      *
+       PROCEDURE DIVISION.
+       100-MAIN-MODULE.
+           OPEN INPUT MODEL-MASTER
+           OPEN OUTPUT MODEL-REPORT
+           MOVE 1 TO PAGE-NUM
+           PERFORM 600-GET-DATE-DATA
+           PERFORM 300-PRINT-HEADER
+           PERFORM UNTIL ARE-THERE-MORE-RECORDS = "NO "
+                IF COUNTER1 IS GREATER THAN 60
+                    PERFORM 300-PRINT-HEADER
+                END-IF
+                READ MODEL-MASTER
+                  AT END
+                      MOVE 'NO ' TO ARE-THERE-MORE-RECORDS
+                  NOT AT END
+                      IF ((SEX-IN = "F" AND HAIR-IN = 2 AND EYES-IN = 2
+                      AND HEIGHT-IN >= 62 AND HEIGHT-IN <= 66) OR
+                      (SEX-IN = "M" AND HAIR-IN = 1 AND EYES-IN = 1 AND
+                      HEIGHT-IN > 72 AND WEIGHT-IN >= 185 AND
+                      WEIGHT-IN <= 200))
+                            THEN PERFORM 200-PROCESS-RECORD
+                      END-IF
+                END-READ
+                ADD 1 TO COUNTER1
+           END-PERFORM
+           CLOSE MODEL-MASTER
+           CLOSE MODEL-REPORT
+           STOP RUN.
+
+      *PROCESS DATA AND WRITE TO OUTPUT RECORD
+       200-PROCESS-RECORD.
+           MOVE NAME-IN TO NAME-OUT
+           MOVE SEX-IN TO SEX-OUT
+           MOVE WEIGHT-IN TO WEIGHT-OUT
+           MOVE HEIGHT-IN TO HEIGHT-OUT
+           PERFORM 400-EYE-COLOR-CONVERT
+           PERFORM 500-HAIR-COLOR-CONVERT
+           MOVE OUTPUT-RECORD TO MODEL-REPORT-OUT
+           WRITE MODEL-REPORT-OUT.
+      *PRINT THE HEADER FOR OUTPUT
+       300-PRINT-HEADER.
+           MOVE HEADER-LINE1 TO MODEL-REPORT-OUT
+           WRITE MODEL-REPORT-OUT
+           MOVE HEADER-LINE2 TO MODEL-REPORT-OUT
+           WRITE MODEL-REPORT-OUT
+           MOVE SPACES TO MODEL-REPORT-OUT
+           WRITE MODEL-REPORT-OUT
+           COMPUTE PAGE-NUM = PAGE-NUM + 1.
+      *DETERMINE EYE COLOR FOR CURRENT RECORD
+       400-EYE-COLOR-CONVERT.
+           EVALUATE TRUE
+                WHEN EYES-IN = 1
+                    MOVE "BLUE" TO EYES-OUT
+                WHEN EYES-IN = 2
+                    MOVE "BROWN" TO EYES-OUT
+                WHEN OTHER
+                    MOVE "OTHER" TO EYES-OUT
+           END-EVALUATE.
+      *DETERMINE HAIR COLOR FOR CURRENT RECORD
+       500-HAIR-COLOR-CONVERT.
+           EVALUATE TRUE
+                WHEN HAIR-IN = 1
+                    MOVE "BLONDE" TO HAIR-OUT
+                WHEN HAIR-IN = 2
+                    MOVE "BROWN" TO HAIR-OUT
+                WHEN OTHER
+                    MOVE "OTHER" TO HAIR-OUT
+           END-EVALUATE.
+      *GET CURRENT DATE AND STORE TO OUTPUT RECORD
+       600-GET-DATE-DATA.
+           MOVE FUNCTION CURRENT-DATE TO WS-DATE
+           MOVE WS-YR OF WS-DATE TO HEAD-YEAR OF DATE-OUT
+           MOVE WS-MONTH OF WS-DATE TO HEAD-MONTH OF DATE-OUT
+           MOVE WS-DAY TO HEAD-DAY OF DATE-OUT.
