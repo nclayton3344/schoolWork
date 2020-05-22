@@ -1,0 +1,38 @@
+/*
+    Java progam on the mainframe to accept a 64-bit hex number (address) and display its region, 
+    segment, page, and page offset numbers.
+     
+    author:Nathan Clayton
+    version: 2/12/19
+    file: AddressMapping.java
+ */
+public class AddressMapping {
+
+    public static void main(String [] args){
+
+    	int segment, leadingRegionChar;
+        String address, addressWithSpaces, segmentString;
+
+        addressWithSpaces = args[0];
+
+        //Remove spaces from hex address for ease of use
+        address = addressWithSpaces.replaceAll("\\s+","");
+
+        //determine segment index and leading character for region index
+        segment = Integer.parseInt(address.substring(5,8), 16);
+        leadingRegionChar = segment % 2;
+        segment = segment / 2;
+        segmentString = Integer.toHexString(segment).toUpperCase();
+
+        //Display Generated Info
+        System.out.println("Input address: " + addressWithSpaces);
+        System.out.println("Region index RX = " + leadingRegionChar + " " + addressWithSpaces.substring(12));
+        System.out.println("Segment index SX = " + segmentString.substring(0,1) + " " + segmentString.substring(1));
+        System.out.println("Page index PX = " + address.substring(3,5));
+        System.out.println("Page offset BX = " + address.substring(0,1) + " " + address.substring(1, 3));
+        
+
+    }
+
+}
+

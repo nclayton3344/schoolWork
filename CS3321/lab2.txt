@@ -1,0 +1,21 @@
+/*REXX*/
+
+/*
+        A program to convert an integer number to it's binary representation
+        and display it.
+
+        Author: Nathaniel Clayton
+        Version: 03/26/2019
+*/
+SAY 'ENTER A POSITIVE INTEGER NUMBER'
+PULL NUM
+QUOTIENT = NUM
+BINARYSTRING = ''
+DO WHILE QUOTIENT > 0
+        REM = QUOTIENT // 2
+        BINARYSTRING = REM || BINARYSTRING
+        QUOTIENT = QUOTIENT % 2
+END
+
+SAY NUM || ' AS BINARY: ' || BINARYSTRING
+EXIT
