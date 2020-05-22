@@ -1,0 +1,27 @@
+#Makefile for the lab07
+
+SHELL := /bin/bash
+
+reverse :  main.o doReverse.o reverseLine.o
+	gcc -gstabs+ -o reverse main.o doReverse.o reverseLine.o
+
+main.o:	main.s
+	gcc -gstabs+ -c main.s
+
+reverseLine.o : reverseLine.s
+	gcc -gstabs+ -c reverseLine.s
+doReverse.o : doReverse.s
+	gcc -gstabs+ -c doReverse.s
+
+clean:
+	@rm -vf *.o reverse .*swp output
+
+compare: reverse
+	./reverse < reverse.c | ./reverse > output
+	diff reverse.c output
+	@if [[ $$? -eq 0 ]]; then\
+	    echo "Success";\
+	else\
+	    echo "No cigar!";\
+	fi
+

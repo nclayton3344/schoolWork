@@ -1,0 +1,32 @@
+#*********************************************************
+# FILE: lab01.wall
+#
+# PURPOSE: A program to calculate and store the sum of the
+#               the first N integers
+#
+# PROGRAMMER: Nathaniel Clayton 
+#
+# DATE COMPLETED: January 24, 2019 
+# 
+#*********************************************************
+  
+                 sip    main
+                 org    0x50
+ N:              db     10
+ Sum:            bss    1
+ 
+                 org    0x00
+ main:           load   R1,-1      # constant -1;
+                 load   R2, [N]    # set index counter
+                 xor    RA, RA, RA #set sum = 0
+                 xor    R0, R0, R0 #set comparand = 0
+ 
+ do:
+                 add RA, RA, R2    # sum += N;
+                 add R2, R2, R1    # N--;
+                 jmpEQ R2=R0, continue #while N != 0
+                 jmp do
+                 
+ continue:
+                 store [Sum], RA   # store Sum
+                 halt

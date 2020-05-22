@@ -1,0 +1,121 @@
+#*********************************************************
+# FILE: lab03.wall
+#
+# PURPOSE: The program is to sum all the values in an array 
+#          Numbers and store that sum in Sum1.  Then the program 
+#          is to negate and actually store the negated values 
+#          back in memory.  Finally, the program is to sum the 
+#          array of negated values and store that sum in Sum2. 
+#
+# PROGRAMMER: Nathaniel Clayton 
+#
+# DATE COMPLETED: February 7, 2019 
+#
+#*********************************************************
+
+#*********************************************************
+# Algorithm implemented:
+#    
+#     Sum1 = 0
+#     index = 0
+#     while index < N
+#          Sum1 += Numbers[index]
+#          index += 1
+#     end while
+#     store Sum1
+#
+#     index = 0
+#     while index < N
+#          Numbers[index] = -Numbers[index]
+#          index += 1
+#     end while
+#
+#     Sum2 = 0
+#     index = 0
+#     while index < N
+#          Sum2 += Numbers[index]
+#          index += 1
+#     end while
+#     store Sum2
+#
+#     halt
+#*********************************************************
+
+#*********************************************************
+# Register usage:
+#    R0 -- comparand register, used to hold array index (iReg)
+#    R1 -- used to hold constant 1
+#    R2 -- used to hold summated value
+#    R4 -- used to hold negation mask (0xFF)
+#    R5 -- ptrVal used to hold ptrVal for first sum loop
+#    R6 -- negVal used to hold negative value of array at index iReg
+#    R7 -- used to point to beginning of Numbers array
+#    R8 -- used to hold length of Numbers array
+#*********************************************************   
+
+
+        sip main
+        org 0x00
+
+Numbers:     db 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x80
+N:           db  16
+Sum1:        bss 1
+Sum2:        bss 1
+iReg:        equ R0
+one:         equ R1
+Sum:         equ R2
+NegMask:     equ R4
+ptrVal:      equ R5
+negVal:      equ R6
+ptr:         equ R7
+nReg:        equ R8 
+
+        org 0x40
+
+main:
+    xor iReg, iReg, iReg
+    xor Sum, Sum, Sum
+    load one, 1                       # one = 1
+    load NegMask, 0xFF                # NegMask = 0xFF
+    load nReg, N                      # nReg = N
+    load ptr, Numbers                 # point to array
+
+loop1:
+    jmpEQ nReg=iReg, endLoop1         # while i<N
+    iload ptrVal, [ptr]               # ptrVal = *ptr
+    add Sum, Sum, ptrVal              # Sum += ptrVal
+    add iReg, iReg, one               # iReg++
+    add ptr, ptr, one                 # ptr++
+    jmp loop1
+
+endLoop1:
+    store [Sum1], Sum                 # Store Sum
+    xor iReg, iReg, iReg              # iReg = 0
+    load ptr, Numbers                 # ptr = Num
+
+loop2:
+    jmpEQ nReg=iReg, endLoop2         # while i<N
+    iload ptrVal, [ptr]               # ptrVal = *ptr
+    xor negVal, NegMask, ptrVal       # xor with mask
+    add negVal, negVal, one           # add one for negation
+    istore [ptr], negVal              # store ptr* = negVal
+    add iReg, iReg, one               # i++
+    add ptr, ptr, one                 # ptr++
+    jmp loop2                         
+
+endLoop2:
+    xor iReg, iReg, iReg              # iReg = 0
+    load ptr, Numbers                 # ptr = Numbers
+    xor Sum, Sum, Sum                 # Sum = 0
+
+loop3:
+    jmpEQ nReg=iReg, endLoop3         # while i < N
+    iload ptrVal, [ptr]               # ptrVal = *ptr
+    add Sum, Sum, ptrVal              # Sum += ptrVal
+    add iReg, iReg, one               # iReg++
+    add ptr, ptr, one                 # ptr++
+    jmp loop3               
+
+endLoop3:
+    store [Sum2], Sum                 # store Sum2
+    halt

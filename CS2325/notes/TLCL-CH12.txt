@@ -1,0 +1,71 @@
+Three reasons to learn VI:
+	always available - if graphical interface is non-existant
+	lightweight and fast 
+	you'll be a sissy if you dont
+
+Cursor movement keys:
+	l or Right arrow - move right one
+	h or left arrow - left one character
+	j or down arrow - down one line
+	k or up arrow - up one line
+	0 - beginning of current line
+	^ - to the first non-whitespace character on the current line
+	$ - to the end of the current line
+	w - to the beginning of the next word or punctuation character
+	W - to the beginning of the next word, ignoring punctuation
+	b - to the beginning of the previous word or punctuation character
+	B - to the beginning of the previous word, ignoring punctuation
+	ctrl-f or page down - down one page
+	ctrl-b or page up - up one page
+	numberG - to line number, for example 1g moves to the first line of the file
+	G - to the last line of the file
+	a - append to current line past the cursor
+	A - append to end of current line
+	o - open a line below cursor
+	O - open a line above cursor
+	
+Deleting Text:
+	x - delete the current character
+	3x - delete current character and next 2 characters
+	dd - delete current line
+	5dd - delete current line and next 4 lines
+	dW - delete from cursor position to beginning of the next word
+	d$ - delete from the cursor to the end of the line
+	d0 - delete from the cursor to beginning of the line
+	d^ - delete from the cursor to first non-whitespace character in the line
+	dG - delete from the current line to end of file
+	d20G - delete from current line to the twentieth line of the file
+
+Yanking commands:
+	yy - yank current line
+	5yy - yank current line and next four lines
+	yW - yank from the cursor to beginning of the next word
+	y$ - yank from cursor to end of line
+	y0 - yank from cursor to beginning of line
+	y^ - yank from cursor to first non-whitespace character in line
+	yG - yank from current line to end of file
+	y20G - yank from current line to twentieth line in file
+
+Search commands:
+	f - search line
+	/ - search file
+	n - repeat search
+
+Search and replace
+	COMMAND => :%s/Line/line/gc
+	: - starts an ex command
+	% - specifies the range of lines for the operation
+	s - specifies the operation (substitution)
+	/Line/line - the search pattern and replacement text
+	g - global, perform at every instance of the search string
+	c - add user confirmation before replacing 
+	
+Ex command "e"
+	:e ls-output.txt
+	add ls-output.txt to current editing session
+
+	
+
+
+
+

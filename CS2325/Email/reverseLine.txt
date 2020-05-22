@@ -1,0 +1,39 @@
+	.arch armv6
+        .arm
+	.fpu vfp
+	.text
+	.align	2
+	.global reverseLine
+        .syntax unified
+	.type	reverseLine, %function
+
+.equiv  EOLN, 10        @ ASCII end of line
+
+        @ Calling sequence (no arguments):
+        @                               bl  reverseLine
+        @
+        @ uses one system functions:  fputc
+        @ fputc(a character, address of output stream)
+        @
+        @ NOTE:  variable ch in C version is an automatic variable 
+        @        whose value is stored on the stack(memory)
+
+
+reverseLine:
+	@stmfd	sp!, {r5, fp, lr}
+        push    {r5, fp, lr}
+	add	fp, sp, #4      @ set frame pointer using Raspberry Pi conventions
+        ldr     r5, output
+        ldr     r5, [r5]        @ address of stream stdout
+
+        bl      doReverse
+        mov     r0, #EOLN
+	mov	r1, r5          @ address of stdout
+	bl	fputc           @ output ch to stdout
+        @prepare for return
+        sub     sp, fp, #4
+        @ldmfd  sp!, {r5, fp, pc}
+        pop     {r5, fp, pc}
+        .align  2
+output: .word   stdout
+        .size   reverseLine, .-reverseLine

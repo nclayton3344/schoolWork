@@ -1,0 +1,124 @@
+#*********************************************************
+# FILE: lab03.wall
+#
+# PURPOSE: The program is to sum all the values in an array 
+#          Numbers and store that sum in Sum1.  Then the program 
+#          is to negate and actually store the negated values 
+#          back in memory.  Finally, the program is to sum the 
+#          array of negated values and store that sum in Sum2. 
+#
+# PROGRAMMER: Nathaniel Clayton 
+#
+# DATE COMPLETED: February 7, 2019 
+#
+#*********************************************************
+
+#*********************************************************
+# Algorithm implemented:
+#    
+#     Sum1 = 0
+#     index = 0
+#     while index < N
+#          Sum1 += Numbers[index]
+#          index += 1
+#     end while
+#     store Sum1
+#
+#     index = 0
+#     while index < N
+#          Numbers[index] = -Numbers[index]
+#          index += 1
+#     end while
+#
+#     Sum2 = 0
+#     index = 0
+#     while index < N
+#          Sum2 += Numbers[index]
+#          index += 1
+#     end while
+#     store Sum2
+#
+#     halt
+#*********************************************************
+
+#*********************************************************
+# Register usage:
+#    R0 -- comparand register, used to hold length of Numbers
+#    R1 -- used to hold constant 1
+#    R2 -- used to calculate unsigned sum
+#    R3 -- used to hold negated sum
+#    R4 -- used to hold negation mask
+#    R7 -- used to point to beginning of Numbers array
+#    R8 -- used to hold index
+#*********************************************************   
+
+
+        sip main
+        org 0x00
+
+Numbers:     db 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x80
+NumberSize:  db  16
+Sum1:        bss 1
+Sum2:        bss 1
+one:         equ R1
+Sum:         equ R2
+NegSum:      equ R3
+NegMask:     equ R4
+ptrVal:      equ R5
+negVal:      equ R6
+ptr:         equ R7
+i:           equ R8
+
+        org 0x40
+
+main:
+    load one, 1                       # R1 = 1
+    load NegMask, 0xFF               # NegMask = 0xFF
+    xor Sum, Sum, Sum                #sum = 0
+    xor NegSum, NegSum, NegSum       #negSum = 0
+    load R0,[NumberSize]               # N -> num ints
+    load i, 0                        # i = 0
+    load ptr, Numbers                #point to array
+
+while0: 
+    jmpLT i<R0, addSum
+    store [Sum1], Sum
+    load i, 0
+    load ptr, Numbers
+    jmp while1
+
+addSum:
+    iload ptrVal, [ptr]
+    add Sum, Sum, ptrVal
+    add i, i, one
+    add ptr, ptr, one
+    jmp while0
+
+while1: 
+    jmpLT i<R0, negateArray
+    load i, 0
+    load ptr, Numbers
+    jmp while2
+    
+
+negateArray:
+    iload ptrVal, [ptr]
+    xor negVal, NegMask, ptrVal
+    add negVal, negVal, one
+    istore [ptr], negVal
+    add i, i, one
+    add ptr, ptr, one
+    jmp while1
+    
+while2:
+    jmpLT i<R0, addNegSum
+    store [Sum2], NegSum
+    halt
+
+addNegSum:
+    iload ptrVal, [ptr]
+    add NegSum, NegSum, ptrVal
+    add i, i, one
+    add ptr, ptr, one
+    jmp while2
+

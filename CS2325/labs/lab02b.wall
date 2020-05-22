@@ -1,0 +1,104 @@
+# *****************************************************************************************
+# FILE:         lab02b.wall
+# PURPOSE:      Calculate the sum of all the even integers in the range between 0 and N
+#               as well as the sum of all the odd integers in the range between 0 and N.
+#               Note that if we then add these two sums together, we will have a value that
+#               is equal to the sum of all the integers between 0 and N. 
+#
+#               SumOdd will hold sum of the odd integers.  SumEven will hold sum of the even
+#               integers. SumAll holds the sum of SumOdd and SumEven.
+#               
+#               Implementation should demonstrate strict adherence to implementation
+#               of the classic while control structure.  Implementation also demonstrates
+#               usage of the EQU pseudo-op to enhance program readability and maintainability.
+#
+#
+# WRITTEN BY:   Nathaniel Clayton
+# DATE:         01-31-2019
+#*****************************************************************************************
+
+#*****************************************************************************************
+# Algorithm implemented:
+# SumEven = SumOdd = 0
+# i = 0
+# while i <= N loop
+#    SumEven += i
+#    i++
+#    if i > N then break
+#    SumOdd += i
+#    i++
+# end while loop
+# SumAll = SumEven + SumOdd
+# store results
+#*****************************************************************************************         
+
+            sip    main         # set initial IP to address main
+
+#*****************************************************************************************         
+#             Data Segment
+#
+#    RA -- used to carry sum of even numbers
+#    RB -- used to carry sum of odd numbers
+#    RC -- used to carry sum of all numbers
+#    R1 -- used to hold constant 1
+#    R2 -- used to carry value of N
+#    R3 -- used to carry index value for while loop
+#  
+#
+#*****************************************************************************************         
+            org    0x80
+N:          db     15           # program works for arbitrary positive values <= 15
+                                # 15 is the largest value of N that will not cause overflow
+SumOdd:     bss    1
+SumEven:    bss    1
+SumAll:     bss    1
+
+SumEvenR:   equ    RA           # carry SumEven in RA
+SumOddR:    equ    RB           # carry SumOdd in RB
+SumAllR:    equ    RC           # carry SumAll in RC
+NReg:       equ    R2           # carry N in R3
+i:          equ    R3           # carry i in R3
+
+#*****************************************************************************************         
+#             Code Segment
+#*****************************************************************************************         
+        org    0x40
+main:   
+
+        load        R1,1                         # constant 1
+        load        NReg,[N]                     # load R2(NReg) with value at location N
+        load        R0, [N]                      # load R0(comparand) with value at location N
+        load        i,0                          # i = 0
+        xor         SumEvenR,SumEvenR,SumEvenR   # SumEven = 0
+        xor         SumOddR,SumOddR,SumOddR      # SumOdd = 0
+
+while:                   
+    jmpLT i<R0, loop                # while i<=N
+    jmpEQ i=R0, loop
+    jmp endLoop
+
+loop:
+    add SumEvenR, SumEvenR, i       # SumEven += i
+    add i, i, R1                    # i++
+    move R0, i                      # R0 = i
+    jmpLT NReg<R0, endLoop          # if i>N, break
+    move R0, NReg                   # R0 = N
+    add SumOddR, SumOddR, i         # SumOdd += i
+    add i, i, R1                    # i++
+    jmp while                       # repeat
+
+endLoop:
+    add SumAllR, SumEvenR, SumOddR  # SumAll = SumOdd + SumEvent
+    Store [SumAll], SumAllR         # Store SumALL
+    Store [SumEven], SumEvenR       # Store SumEven
+    Store [SumOdd], SumOddR         # Store SumOdd
+    halt                            # terminate
+
+
+
+
+
+
+
+
+

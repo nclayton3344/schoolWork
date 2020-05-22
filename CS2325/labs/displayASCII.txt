@@ -1,0 +1,73 @@
+#*********************************************************
+# FILE: lab02.wall
+#
+# PURPOSE: A program to print the printable ASCII characters
+#
+# PROGRAMMER: Nathaniel Clayton 
+#
+# DATE COMPLETED: January 28, 2019 
+#
+#*********************************************************
+
+#*********************************************************
+# Algorithm implemented:
+#    char = blankASCII
+#    delete = deleteASCII
+#    
+#    
+#    while (char < delete){
+#        if(char % 32 == 0)
+#            print(lineReturn);
+#        print(char)
+#        char++;
+#    }  
+#
+#*********************************************************
+
+#*********************************************************
+# Register usage:
+#    R0 -- comparand register, holds value of Delete ASCII
+#    R1 -- used to hold constant 1
+#    R2 -- used to hold ASCII Character for Blank Space
+#    R3 -- used to hold mask for determining if bitstring
+#          is divisible evenly by 32
+#    R4 -- used to hold line feed ASCII character
+#    R7 -- used store R2 AND R3 (masking)
+#*********************************************************     
+
+           sip main
+
+Blank:     equ 0x20         #Blank = blankASCII
+Delete:    equ 0x7F         #Delete = deleteASCII
+lineFeed:  equ 0x0a         #lineFeed = lineFeedASCII
+div32Mask: equ 0x1F         #div32Mask = bit string 0001 1111
+
+           org 0x10         #origin = 0x10 (starting point)
+
+main:
+    load R0, Delete         #load ASCII Delete char to Register 0
+    load R1, 1              #load constant 1 to R1
+    load R2, Blank          #load ASCII Blank char to Register 2
+    load R3, div32Mask      #load div32Mask value (1F) to Register 3
+    load R4, lineFeed       #load ASCII line return character to Register 4
+
+while:
+    jmpLT R2<R0, loopBody   #loop while value in R2 is less than value in R0
+    jmp endLoop             #end loop cycle
+
+loopBody:
+    move  RF,R2             #move hex value in R2 to RF
+    add   R2, R2, R1        #increment value in R2 by value in R1
+    push  R0                #store value in R0
+    xor   R0, R0, R0        #set R0 = 0
+    and   R7, R2, R3        #R7 = R2 % 32
+    jmpEq R7=R0, lineReturn #if R7=0, go to lineReturn
+    pop   R0                #restore R0
+    jmp while               #repeat while loop
+
+lineReturn:
+    move  RF, R4            #print new line
+    pop   R0                #restore R0
+    jmp while               #repeat while loop
+
+endLoop: halt               #stop program

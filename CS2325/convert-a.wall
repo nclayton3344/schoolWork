@@ -1,0 +1,264 @@
+################################################################
+# FILE: convert-a.wall
+#
+# A PROGRAM TO DEMONSTRATE:
+#               1. CONVERSION OF STRING TO BYTE
+#               2. DIVISION BY 10 USING BIT OPERATIONS
+#               3. CONVERTING BYTE TO STRING AND DISPLAYING
+#                  ONE CHARACTER AT A TIME RECURSIVELY
+#               4. USING THE STACK FOR PASSING ARGUMENTS
+# 
+# WRITTEN BY: NATHAN CLAYTON
+# FOR:        CS 2325, SPRING 2019
+#
+################################################################
+
+#***************************************************************
+# DATA SECTION
+#***************************************************************
+sip main
+org 0x00
+Num1:           bss     1
+Num2:           bss     1
+Sum:            bss     1
+NumStr1:        db      "127",0
+NumStr2:        db      "128",0
+Message:        db      "Sum is ",0
+
+#***************************************************************
+# CODE SECTION
+#***************************************************************
+
+org 0x14
+main:
+    load    R4,0xAA
+    load    R5,0xAB
+    xor     R6, R6, R6
+    load    R0,NumStr1
+    push    R0
+    call    strToByte
+    store   [Num1],R0
+    add     R6, R6, R0
+    load    R0,NumStr2
+    push    R0
+    call    strToByte
+    store   [Num2], R0
+    add     R6, R6, R0
+    store   [Sum], R6
+    load    R0, Message
+    push    R0
+    call    displaySum
+    push    R6
+    call    printByte
+    halt
+
+#**********************************************************
+# FUNCTION displaySum
+#       Calling Sequence:  PUSH -- Message Beginning Memory 
+#                                Location
+#       
+#       Return:            VOID
+#       NOTE: This procedure follows the WALL register usage
+#             conventions
+#
+# REGISTER USAGE:
+#   R0 -- Used to for comparisons
+#   R1 -- Used as constant 1
+#   R2 -- Used as a pointer to message array
+#   R3 -- Used to hold value at pointer address
+#   RC -- Used to hold byte value to display
+# **********************************************************
+    
+displaySum:
+    PUSH RBP
+    move RBP, RSP
+    rload R2, 2[RBP]    # ptr = Message
+    load R1, 1      # constant 1
+    load R0, 0      # R0 = 0, Checking null term char
+while:
+    iload R3, [R2]
+    jmpeq R3=R0, done
+    move RF, R3
+    add R2, R2, R1
+    jmp while
+done:
+    move RSP, RBP
+    pop RBP
+    ret 1
+#**********************************************************
+# FUNCTION strToByte
+#       Calling Sequence:  PUSH -- Address of string (reference)
+#       
+#       Return:            R0 -- byte version of string
+#       NOTE: This procedure follows the WALL register usage
+#             conventions
+#
+#       Algorithm pseudo code:
+#              byte result = 0;
+#              cha * ptr = aStr;
+#              while ( *ptr ) {
+#                  byte digit = *ptr & 0x0F;
+#                  result = result * 10 + digit;
+#                  ++ptr;
+#              }
+#              return result;
+#
+# REGISTER USAGE:
+#   RC -- Used to hold the result integer
+#   R0 -- Used to hold 0 for comparison
+#   R1 -- Used to hold constant 1
+#   R2 -- Used to hold ASCII mask 0x0F
+#   R3 -- Used to hold array address
+#   R4 -- Used to hold digit value
+#   R5 -- Used to hold value at array address and multiplication
+# **********************************************************
+
+strToByte:
+    push RBP
+    move RBP, RSP
+    rload R3, 2[RBP] 
+    push R5
+    push R4
+    load R1, 1
+    load R2, 0x0F
+    xor  R0,R0,R0
+    xor  RC,RC,RC
+
+whileA:
+    iload R5, [R3]
+    jmpEQ R5=R0, endWhileA       #while( *ptr )
+    and R4, R5, R2               #digit = *ptr & 0x0F
+    move R5, RC                    
+    SL RC, 3                     
+    SL R5, 1                     
+    add RC, RC, R5               # Result = Result * 10
+    add RC, RC, R4               # result = result + digit
+    add R3, R3, R1
+    jmp whileA
+
+
+endWhileA:
+    pop R4
+    pop R5
+    move R0, RC
+    move RSP, RBP
+    pop RBP
+    ret 1
+    
+#**********************************************************
+# FUNCTION divU10
+#       Calling Sequence:  PUSH -- byte value
+#       
+#       Return:            R0 -- quotient
+#                          R1 -- remainder
+#       NOTE: This procedure follows the WALL register usage
+#             conventions
+#
+#       Algorithm used:
+#              qr result;
+#              byte q, r;
+#              q = (aNum >> 1) + (aNum >> 2);  // q = q/2 + q/4 or q * 3/4
+#              q = q + (q >> 4); //q = q*3/4 +  q*3/4 * q*1/16
+#              q = q >> 3; // Then divide result by 8
+#              r = aNum - (((q << 2) + q) << 1); // aNum - q*10
+#              if ( r > 9 ) {
+#                  q += 1;
+#                  r -= 10;
+#              }
+#              result.quotient = q;
+#              result.remainder = r;
+#              return result;
+#
+# REGISTER USAGE:
+#   RC -- Used to hold quotient
+#   R0 -- Used to hold byte value/comparisons/returning
+#   R1 -- Used for division and returning remainder
+#   R2 -- Used for a lot
+# **********************************************************
+
+divU10:
+    push RBP
+    move RBP, RSP
+    rload R0, 2[RBP]
+    move R1, R0   #R1 = aNum
+    move R2, R1        #R2 = aNum
+    SRL R1, 1          #R1/=2
+    SRL R2, 2          #R2/=4
+    add RC, R1, R2     #q = R1 + R2
+    move R1, RC        #R1 = q
+    SRL R1, 4          #R1/=16
+    add RC, RC, R1     #q = q + R1
+    SRL RC, 3          #q/=8
+    move R1, RC        #R1 = q
+    SL R1, 2           #R1*=4
+    add R1, R1, RC     #R1=R1+q
+    SL R1, 1           #R1*=2
+    load R2, 0xFF      #
+    xor R1, R1, R2     #R2 = -R1
+    load R2, 1         #
+    add R1, R1, R2     #R1= R2
+    add R1, R0, R1     #r = aNum - q*10
+    move R0, R1        #R0=r
+    load R2, 9         #R2=9
+    jmpLT R2<R0, largeRem #if (r>9)
+
+return:
+    move R0, RC       #
+    move RSP, RBP
+    pop RBP
+    ret 1             # return q,r
+     
+largeRem:
+    load R2, 1       #
+    add RC, RC, R2   # q += 1
+    load R2, -10     #
+    add R1, R1, R2   # r-=10
+    jmp return 
+      
+#**********************************************************
+# FUNCTION printByte
+#       Calling Sequence:  PUSH -- byte value
+#       
+#       Return:            VOID
+#       NOTE: This procedure follows the WALL register usage
+#             conventions
+#
+#       Algorithm used:
+#              if ( aByte < 10 ) {
+#                  char ch = aByte | 0x30;
+#                  printf("%c", ch);
+#              }
+#              else {
+#                  qr qure = divU10( aByte );
+#                  printByte( qure.quotient );
+#                  char ch = qure.remainder | 0x30;
+#                  printf("%c", ch);
+#              }
+#
+# REGISTER USAGE:
+#   R0 -- Used to hold byte value/comparisons/arguments
+#   R1 -- Used for comparison/holding remainder
+#   R2 -- Used for Masking
+# **********************************************************
+printByte:
+    push  RBP
+    move  RBP, RSP
+    rload R1, 2[RBP]
+    load  R0, 10
+    jmpLT R1<R0, printChar
+    push  R1
+    call  divU10
+    push  R1
+    push  R0
+    call  printByte
+    pop   R1
+
+
+printChar:
+    load  R2, 0x30
+    OR    R2, R2, R1
+    move  RF, R2
+    move  RSP, RBP
+    pop   RBP
+    ret   1
+

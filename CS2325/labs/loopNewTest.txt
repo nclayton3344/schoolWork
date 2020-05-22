@@ -1,0 +1,42 @@
+loop1:
+    jmpLT nReg<iReg, endLoop1
+    iload ptrVal, [ptr]
+    add Sum, Sum, ptrVal
+    add iReg, iReg, one
+    add ptr, ptr, one
+    jmp loop1
+
+endLoop1:
+    store [Sum1], Sum
+    load iReg, 0
+    load ptr, Numbers
+    jmp while2
+
+loop2:
+    jmpLT nReg<iReg, endLoop2
+    iload ptrVal, [ptr]
+    xor negVal, NegMask, ptrVal
+    add negVal, negVal, one
+    istore [ptr], negVal
+    add i, i, one
+    add ptr, ptr, one
+    jmp loop2
+
+endLoop2:
+    load iReg, 0
+    load ptr, Numbers
+    xor Sum, Sum, Sum
+    jmp loop3
+
+loop3:
+    jmpLT nReg<iReg, endLoop2
+    iload ptrVal, [ptr]
+    add Sum, Sum, ptrVal
+    add i, i, one
+    add ptr, ptr, one
+    jmp loop3
+
+endLoop3:
+    store [Sum2], Sum
+    halt
+

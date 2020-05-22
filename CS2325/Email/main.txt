@@ -1,0 +1,43 @@
+    .arch armv6
+    .arm
+    .fpu vfp
+    .text
+    .align 2
+    .global main
+    .syntax unified
+    .type main, %function
+.equiv EOF, -1
+    .align
+
+main:
+    @stmfd sp!, {r4, fp, lr}
+    push {r4,fp, lr}
+    add fp, sp,#4
+    sub sp, sp,#8
+    ldr r4, input
+    ldr r4, [r4]
+
+while:
+        mov	r0, r4
+	bl	fgetc           @ returns ch or EOLN or error
+	str	r0, [fp, #-8]
+	cmp	r0, #0
+	beq	exitMain
+        cmp     r0, #EOF
+	beq	exitMain
+        @loop body
+	ldr	r0, [fp, #-8]
+	mov	r1, r4
+	bl	ungetc
+	bl	reverseLine
+        bal     while
+
+exitMain:
+	mov	r0, #0          @ return code from main
+        @set up for return
+	sub	sp, fp, #4      @ restore sp
+	@ldmfd	sp!, {r4, fp, pc}
+        pop     {r4, fp, pc}
+	.align	2
+input:  .word	stdin
+        .size   main, .-main 

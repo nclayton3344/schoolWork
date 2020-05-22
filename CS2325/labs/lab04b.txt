@@ -1,0 +1,121 @@
+
+
+# ********************************************************
+# FILE:           lab04b.wall
+#
+# PURPOSE:        This program sums all the values in the
+#                 array 'Numbers' and stores that sum in Sum1.
+#
+#                 Then the program negates all the values in
+#                 the array 'Numbers' (stores the negated values
+#                 back in memory).
+#
+#                 Finally, the program sums the array of
+#                 negated values and store that sum in Sum2.
+#
+#                 Procedure ArraySum is used to sum elements of 
+#                 the array
+# PROGRAMMER:     Nathaniel Clayton    
+#                 
+# DATE COMPLETED: February 14, 2019
+#
+# ********************************************************
+            sip    main
+
+# ********************************************************
+# Data segment
+# ********************************************************
+            org    0x00
+Numbers:
+            db     0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08
+            db     0x09,0x0A,0x0B,0x0C,0x0D,0x0E,0x0F,0x80
+N:
+            db     0x10
+Sum1:
+            bss    1
+Sum2:
+            bss    1
+
+# ********************************************************
+# Code segment
+# ********************************************************
+            org    0x40
+main:
+            load   R0, Numbers
+            push   R0
+            load   R1, [N]
+            push   R1
+            call   ArraySum
+            store  [Sum1], R0
+
+# *********************
+# Negate loop
+# *********************
+            load   RC,Numbers                # ptr = pointer to array
+            load   R2, 0xFF                  # mask for negation
+            load   R1,1
+            load   R0, [N]
+            add    R0,R0,RC                  # ptr+N for loop control
+Negate:
+            jmpEQ  RC=R0,EndNegate           # while ptr < Numbers+N
+            iload  R3,[RC]                   # R3 = *ptr
+            xor    R3,R3,R2                  # toggle all bits
+            add    R3,R3,R1                  # add 1 to negate
+            istore [RC],R3                   # *ptr = -*ptr
+            add    RC,RC,R1                  # ptr++
+            jmp    Negate                    
+EndNegate:  
+            load   R0, Numbers
+            push   R0
+            load   R1, [N]
+            push   R1
+            call   ArraySum
+            store  [Sum2], R0
+            
+            halt
+
+ 
+# **********************************************************
+# FUNCTION ArraySum
+#       Calling Sequence:  PUSH -- Address of array (reference)
+#                          PUSH -- Number of elements in array
+#       Return:            R0 -- Sum of all elements in array
+#       NOTE: This procedure follows the WALL register usage
+#             conventions
+#
+#       Algorithm pseudo code:
+#               N: number of elements in array
+#               ptr: address of array
+#               index = 0
+#               sum = 0
+#               while index < N
+#                   sum += *ptr
+#                   ptr++
+#               end while
+#               return sum
+# **********************************************************
+ArraySum:
+            push  RBP
+            move  RBP, RSP
+
+            rload R3, 3[RBP]            # Fetch array address
+            rload R0, 2[RBP]            # Fetch Number elements
+
+# STUDENT implementation here
+            load R1, 1         # R1 = 1
+	    add R0, R0, R3     # Comparand = N + ptr
+            xor RC, RC, RC     # sum = 0            
+SumLoop:
+            jmpEQ R3=R0, EndLoop              # while ptr < ptr + N
+            iload R2, [R3]                    # ptrVal = *ptr
+            add RC, RC, R2                    # Sum += ptrVal
+            add R3, R3, R1                    # ptr++
+            jmp SumLoop
+EndLoop:
+            move  R0, RC        # move sum to return register
+            move  RSP, RBP      # restore RSP
+            pop   RBP           # restore RBP
+            ret   2             # pop two arguments
+            
+
+

@@ -1,0 +1,318 @@
+Given the following C language program, implement it faithfully in ARM assembler.  Note that sum, n and i are automatic variables that MUST be initialized and stored in memory/stack relative to the frame pointer AND they must be retrieved from memory/stack to be updated and then stored back again.  NOTE:  these variables may live in a register for only the time needed for testing/updating.
+
+
+        .arch armv6
+        .arm
+        .fpu vfp
+        .align  2
+        .syntax unified
+        .data
+mesg:   .asciz  "Sum of the first %d integers is %d\n"
+        .text
+        .align  2
+        .global main
+        .type   main, %function
+main:
+        push    {fp, lr}
+        sub     fp, sp, #4
+        sub     sp, sp, #16
+        mov     r3, #0
+        str     r3, [fp, #-8]   @ sum
+        mov     r3, #100
+        str     r3, [fp, #-16]  @ n
+        mov     r3, #0
+        str     r3, [fp, #-12]  @ i
+while:
+        ldr     r2, [fp, #-12]
+        ldr     r3, [fp, #-16]
+        cmp     r2, r3
+        bgt     end_while
+
+        ldr     r2, [fp, #-8]
+        ldr     r3, [fp, #-12]
+        add     r3, r2, r3
+        str     r3, [fp, #-8]
+        ldr     r3, [fp, #-12]
+        add     r3, r3, #1
+        str     r3, [fp, #-12]
+        bal     while
+
+end_while:
+        ldr     r0, =mesg
+        ldr     r1, [fp, #-16]
+        ldr     r2, [fp, #-8]
+        bl      printf
+
+        mov     r0, #0
+        add     sp, fp, #4
+        pop     {fp, pc}
+
+
+
+
+
+
+
+void initialize(int * nums, int n) {
+    register int i;
+    register int * ptr;
+    register int * stop;
+
+    stop = nums + n; // in assembler expression is
+                     // nums + n*4 since ints take 4 bytes
+    ptr = nums;
+
+    i = 1;
+    while ( ptr != stop ) {
+        *ptr++ = i++;  // ptr++ adds 4 to value of ptr after
+                       // ptr is dereferenced -- post increment
+    }
+}
+
+
+    .arch armv6
+    .text
+    .align   2
+    .global  initialize
+    .syntax  unified
+    .arm
+    .fpu vfp
+    .type    initialize, %function
+        @ calling sequence:
+        @       r0  base address of array to be initialized
+        @       r1  n -- number of items in arry
+        @       bl  initialize
+        @ register usage:
+        @       r0  base address of array -- nums
+        @       r2  ptr
+        @       r1  stopping address
+        @       r3  variable i
+initialize:
+        push    {lr}
+        add     r1, r0, r1, lsl #2  @ stop = nums + n << 2
+        mov     r2, r0              @ ptr = nums
+        mov     r3, #1              @ i = 1
+while:
+       cmp    r2, r1              @ while ( ptr != stop )
+       beq    return
+       str    r3, [r2], #4        @ *ptr++ = i register post increment
+       add    r3, r3, #1          @ i++
+       b      while
+return:
+       pop     {pc}
+      .size    initialize, .-initialize
+
+
+
+
+
+
+
+
+
+
+
+We know that the displayable ASCII characters lie in the inclusive range between decimal 32 and decimal 126, inclusive.  Write an ARM assembly language program that displays these characters on the text-based console arranged 16 characters per line for the first five lines and 15 characters on the last line.  These characters must be generated one at a time, i.e. do not create a string to iterate over.  Send a line feed to the console after completing the display.  Remember that ASCII line feed has decimal value 10.
+
+        .arch armv6
+        .arm
+        .fpu vfp
+        .text
+        .align  2
+        .syntax unified
+        .global main
+        .type   main, %function
+main:
+        push    {r4, r5, r6, lr}
+        mov     r4, #32
+loop:
+        cmp     r4, #126
+        bgt     endLoop
+        mov     r0, r4
+        bl      putchar
+        add     r4, r4, #1
+        sub     r5, r4, #32
+        tst     r5, #0xF
+        beq     newLine
+        bal     loop
+newLine:
+        mov     r0, #10
+        bl      putchar
+        bal     loop
+endLoop:
+        mov     r0, #10
+        bl      putchar
+
+        mov     r0, #0
+        pop     {r4, r5, r6, pc}
+
+
+
+
+
+
+
+
+
+
+Using ARM assembler, implement the following C program.  Your implementation should exist in a single file.  Your implementation must be a faithful implementation of the logic in the C program and function.  Note that the sum to be returned should be 5050.  
+
+Requirements:  Code for this should exist entirely within a single file BUT must contain both the main and the sumInt functions.  You MUST adhere to register usage conventions in your implementation.
+
+Also, note that the argument to this function MUST be passed to it on the stack.  Be sure both your main and your sumint function fully adhere to the stack frame discipline and the variables number and sum MUST be treated as  "automatic" local variables.  Please note that this approach is NOT the standard ARM approach.  However, since you are implementing the caller in ARM assembler as well as the function in ARM assembler. you can establish your own conventions.
+
+NOTE:  Any submission that is essentially the same as compiler generated code will receive negative points.
+
+
+#include <stdio.h>
+
+int sumInt( int n ) {
+    if ( n <= 0 ) return 0;
+
+    return n + sumInt(n-1);
+}
+
+int main() {
+
+    int number = 100;
+
+    int sum = sumInt(number);
+    printf("Sum of the first %d integers is %d\n", number, sum);
+
+    return 0;
+}
+
+
+        .arch armv6
+        .arm
+        .fpu vfp
+        .syntax unified
+        .text
+        .align  2
+        .global sumInt
+        .type   sumInt, %function
+sumInt:
+        push    {fp, lr}
+        mov     fp, sp
+
+        ldr     r2, [fp, #8]   @ argument two words back
+        cmp     r2, #0
+        ble     return_zero
+        subs    r2, r2, #1
+        push    {r2}
+        bl      sumInt
+        ldr     r2, [fp,#8]
+        adds    r0, r0, r2
+        bal     return
+
+return_zero:
+        eor     r0, r0, r0
+return:
+        mov     sp, fp
+        pop     {fp, pc}
+
+
+        .align  2
+        .data
+mesg:   .asciz  "Sum of the first %d integers is %d\n"
+
+        .text
+        .align  2
+        .global main
+        .type   main, %function
+main:
+        push    {fp, lr}
+        sub     fp, sp, #4
+        sub     sp, sp, #16
+        mov     r3, #100
+        str     r3, [fp, #-8]
+        push    {r3}
+        bl      sumInt
+        str     r0, [fp, #-12]
+        ldr     r0, =mesg
+        ldr     r1, [fp, #-8]
+        ldr     r2, [fp, #-12]
+        bl      printf
+
+        mov     r0, #0
+        add     sp, fp, #4
+        pop     {fp, pc}
+
+
+
+
+
+
+QUESTIONS:
+
+Since ASCII digit characters are represented in the range 0x30 through 0x39, we must mask off the high order nibble to leave 0x0 through 0x9.  Assuming the digit character is held in a variable ch, then the operation could be ch and 0x0F or the operation could be ch xor 0x30.
+
+Since ASCII digit characters are represented in the range 0x30 through 0x39, we must mask off the high order nibble to leave 0x0 through 0x9.  Assuming the digit character is held in a variable ch, then the operation could be ch and 0x0F or the operation could be ch xor 0x30.
+
+
+
+
+
+
+
+If r0 initially contains 1, what will it contain after the third instruction in the sequence
+below? State your answer as a decimal (base 10) value.
+
+ add r0,r0,#1
+ mov r1,r0
+ add r0,r1,r0 lsl #1
+Answer: 	
+6
+
+
+
+
+
+ 
+
+What will r0 and r1 contain after each of the following instructions? Give your answers in base 10.  If the register value is unknown, indicate with a question mark.
+1 mov r0,#1      r0=[1a]; r1=[1b]
+2 mov r1,#0x20   r0=[2a]; r1=[2b]
+3 orr r1,r1,r0   r0=[3a]; r1=[3b]
+4 lsl r1,#0x2    r0=[4a]; r1=[4b]
+5 orr r1,r1,r0   r0=[5a]; r1=[5b]
+6 eor r0,r0,r1   r0=[6a]; r1=[6b]
+7 lsr r1,r0,#3   r0=[7a]; r1=[7b]
+Specified Answer for: 1a 	
+1
+Specified Answer for: 1b 	
+?
+Specified Answer for: 2a 	
+1
+Specified Answer for: 2b 	
+32
+Specified Answer for: 3a 	
+1
+Specified Answer for: 3b 	
+33
+Specified Answer for: 4a 	
+1
+Specified Answer for: 4b 	
+132
+Specified Answer for: 5a 	
+1
+Specified Answer for: 5b 	
+133
+Specified Answer for: 6a 	
+132
+Specified Answer for: 6b 	
+133
+Specified Answer for: 7a 	
+132
+Specified Answer for: 7b 	
+16 
+
+
+
+
+
+
+
+
+
+

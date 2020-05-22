@@ -1,0 +1,45 @@
+CHAPTER 15 - STORAGE MEDIA:
+
+RAID - Redundant Array of Independent Disks
+LVM - Logical Volume Manager
+
+mount - mount a file system
+umount - unmount a file system
+fsck - check and repair a file system
+fdisk - partition table manipulator
+mkfs - create a file system
+fdformat - format a floppy disk
+dd - write block oriented data directly to a device
+genisoimage (mkisofs) - create an ISO 9660 image file
+wodim (cdrecord) - write data to optical storage media
+md5sum - calculate an md5 checksum
+
+/etc/fstab (file system table):
+
+Fields:
+	Device - name of device
+	mount point - directory where the device is attached
+	file system type - obvi
+	options - read only for example
+	frequency - a single number that specifies if and when a file system is to be back up with the dump command
+	order - a single number that specifies in what order file systems should be checked with the fsck command
+
+COMMANDS:
+
+	mount(no args) - display list of file systems currently mounted
+	
+	list format:
+		device on mount_point type file_system_type (options)
+
+
+Linux storage device names:
+
+/dev/fd - floppy disk
+/dev/hd* - IDE disks on older systems
+/dev/lp* - printers
+/dev/sd* - SCSI disks.On modern Linux systems, the kernel treats all disk-like devices (PATA/SATA hdd, flash drives, usb mass storage) as SCSI disks. 
+/dev/sr* - optical drives
+
+
+
+	
