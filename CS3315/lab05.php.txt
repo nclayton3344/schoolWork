@@ -1,0 +1,69 @@
+#!/usr/bin/env php
+<?php
+
+#####################################################################
+#    FILE:  lab05.php
+#
+#    PURPOSE:  To demonstrate parsing of delimiter separated
+#              lines of text as a prelude to some sysadmin
+#              reporting task
+#
+#    NOTE:  This script must be run directly on thor to
+#           get intended results
+#
+#    AUTHOR: Nathaniel Clayton, Professor Haiduk
+#
+#    DATE: 04/17/2019
+####################################################################
+
+$fileContents = file_get_contents("/etc/group");
+#   results in one long string with \n delimiters
+$lines = explode("\n", $fileContents);
+
+$fileHandle = fopen("/etc/group", "r");
+$line = fgets($fileHandle);
+
+# print date programatically centered to 80 columns
+$date = date("M,d,Y h:i:s A");
+$spaces = floor((80 - strlen($date))/2);
+$spaces = str_repeat(" ",$spaces);
+printf("%s %s %s", $spaces, $date, $spaces);
+
+# print byline programtically centered to 80 columns
+$byline = "By: Nathaniel Clayton";
+$spaces = floor((80 - strlen($byline))/2);
+$spaces = str_repeat(" ",$spaces);
+printf("\n%s %s %s\n\n", $spaces, $byline, $spaces);
+
+# loop through lines of the file
+while ( $line ) {
+    $line = trim($line);
+    $tokens = explode( ":", $line );
+    
+    # check for existence of users in the group    
+    if(sizeof($tokens) > 3 && $tokens[3] != null){
+       printf("%s : \n", $tokens[0]);           # print group name
+       $tokens = explode(",", $tokens[3]);      # split users in group
+       $index = 1;
+
+       # loop through users and pretty print them
+       foreach($tokens as $token){
+            printf("%13s", $token);
+            # add newline for every 5 users in group
+            if(($index % 5 == 0) && sizeof($tokens) > 5){
+                printf("\n");
+            }
+            $index++;       
+       }
+       printf("\n\n");
+
+    }
+    $line = fgets($fileHandle);
+}
+
+fclose($fileHandle);
+
+
+exit(0);
+
+?>
